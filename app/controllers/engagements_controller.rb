@@ -2,6 +2,7 @@ class EngagementsController < ApplicationController
   before_action :set_engagement, only: [:show, :edit, :update, :destroy]
 
   # GET /engagements
+  # Test commentaire
   # GET /engagements.json
   def index
     @engagements = Engagement.order(params[:sort])
