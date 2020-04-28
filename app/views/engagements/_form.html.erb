@@ -15,7 +15,13 @@
     <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
-
+    <div class="input-field">
+    <%= form.collection_select :artiste_id, Artiste.all, :id, :name,{:class => 'dropdown'} %>
+  </div>
+  <div class="input-field">
+    <p>Statut de l'engagement</p>
+      <%= form.select :status, [['Confirmé','confirmed'],['Invitation','invitation'],['Option','option']] ,{}, { :class => 'browser-default', :id => 'eventtype' } %>
+      </div>
   <div class="field col s6">
     <%= form.label :begin %>
     <%= form.text_field :begin, class: "datepicker" %>
@@ -50,9 +56,6 @@
     <%= form.check_box(:taxi) %>
     <span>Taxi </span></label>
     
-
-
-   </label>
   </div>
 
   <div class="field">
@@ -69,9 +72,7 @@
   </div>
 
 
-    <div class="input-field">
-    <%= form.collection_select :artiste_id, Artiste.all, :id, :name,{:class => 'dropdown'} %>
-  </div>
+
 
   <div class="input-field">
     <%= form.collection_select :programme_id, Programme.all, :id, :title,{:class => 'dropdown'} %>
@@ -104,5 +105,6 @@
   <div class="actions">
     <%= form.submit 'Enregistrer', :class => 'btn blue darken-2'%>
   </div>
+
 </div>
 <% end %>

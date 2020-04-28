@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_26_161603) do
+ActiveRecord::Schema.define(version: 2020_04_28_132216) do
 
 # Could not dump table "artistes" because of following StandardError
 #   Unknown type 'reference' for column 'engagement'
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2020_04_26_161603) do
     t.integer "programme_id"
     t.boolean "voyages"
     t.integer "artiste_id"
+    t.string "status"
     t.index ["artiste_id"], name: "index_engagements_on_artiste_id"
     t.index ["programme_id"], name: "index_engagements_on_programme_id"
   end

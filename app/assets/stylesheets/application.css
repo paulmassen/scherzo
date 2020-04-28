@@ -26,7 +26,15 @@ header, main, footer {
     padding:20px;
     margin-left:30px;
 }
-
+.option {
+ background: repeating-linear-gradient(
+  45deg,
+  rgba(0, 0, 0, 0.2),
+  rgba(0, 0, 0, 0.2) 10px,
+  rgba(0, 0, 0, 0.3) 10px,
+  rgba(0, 0, 0, 0.3) 20px
+)
+}
 .circled {
   border-radius: 50%;
 }

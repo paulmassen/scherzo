@@ -97,6 +97,6 @@ class EngagementsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def engagement_params
-      params.require(:engagement).permit(:title, :begin, :end, :contract, :hotel, :voyages, :taxi, :sent, :rehearsals, :artiste_id, :programme_id, programmes_attributes: [:id, :title], events_attributes: [:id, :eventtype, :eventdate, :eventbegin, :eventend, :description1, :description2, :location, :_destroy], artistes_attributes: [:id, :name, :color])
+      params.require(:engagement).permit(:title, :status, :begin, :end, :contract, :hotel, :voyages, :taxi, :sent, :rehearsals, :artiste_id, :programme_id, programmes_attributes: [:id, :title], events_attributes: [:id, :eventtype, :eventdate, :eventbegin, :eventend, :description1, :description2, :location, :_destroy], artistes_attributes: [:id, :name, :color])
     end
 end

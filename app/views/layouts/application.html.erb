@@ -81,7 +81,7 @@ $(".eventtype").change(function() {
 	defaultDate : '2020-04-02',
 	events : '/engagements.json',
 	
-  eventRender: function(event, element) {
+/*  eventRender: function(event, element) {
             // Array that will store accepted classes
             var eventAcceptedClasses = [];
             if ($('.nicholas-angelich').is(':checked')){
@@ -89,7 +89,7 @@ $(".eventtype").change(function() {
             }
             if ($('.khatia-buniatishvili').is(':checked')){
                 eventAcceptedClasses.push('khatia-buniatishvili');
-                console.log('displayed khatia');
+             
             }
             if ($('.david-kadouch').is(':checked')){
                 eventAcceptedClasses.push('david-kadouch');
@@ -107,7 +107,7 @@ $(".eventtype").change(function() {
                 }
             });
             return displayEvent;
-        }
+        }*/
 });
 $('.events-filter-checkbox').on('change', function(){
     $('#calendar').fullCalendar('rerenderEvents');

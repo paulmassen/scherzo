@@ -4,3 +4,7 @@
 
 <%= link_to 'Show', @engagement %> |
 <%= link_to 'Back', engagements_path %>
+
+  <div class="infobox">
+  Engagement créé le <%= @engagement.created_at %> et modifié pour la dernière fois le <%= @engagement.updated_at %>
+  </div>
