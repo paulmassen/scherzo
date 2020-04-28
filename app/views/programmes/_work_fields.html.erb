@@ -1,0 +1,24 @@
+ <div class='nested-fields'>
+   <div class="row">
+    <div class="field col s6">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+      <div class="field col s6">
+      <%= f.label :opus %>
+      <%= f.text_field :opus %>
+    </div>
+      <div class="input-field col s4">
+      <%= f.label :composer %>
+      <%= f.text_field :composer, class: "composer-autocomplete" %>
+    </div>
+      <div class="field col s4">
+      <%= f.label :duration %>
+      <%= f.number_field :duration %>
+    </div>
+    <div class="row">
+    <%= link_to_remove_association "remove work", f,class: "btn red lighten-1" %>
+    </div>
+  </div>
+  </div>
+  <hr>

@@ -1,0 +1,11 @@
+<div class="events-filter-checkbox">
+<% @artistes.each do |artiste| %>
+<div>
+    <label>
+        <input type="checkbox" class="<%= artiste.name.parameterize %>" checked/>
+        <span><%= artiste.name %></span>
+    </label>
+</div>
+<% end %>
+</div>
+<div id="calendar"></div>

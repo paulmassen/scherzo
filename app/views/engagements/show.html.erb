@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @engagement.title %>
+</p>
+
+<p>
+  <strong>Begin:</strong>
+  <%= @engagement.begin %>
+</p>
+
+<p>
+  <strong>End:</strong>
+  <%= @engagement.end %>
+</p>
+
+<p>
+  <strong>Contract:</strong>
+  <%= @engagement.contract %>
+</p>
+
+<p>
+  <strong>Hotel:</strong>
+  <%= @engagement.hotel %>
+</p>
+
+<p>
+  <strong>Taxi:</strong>
+  <%= @engagement.taxi %>
+</p>
+
+<p>
+  <strong>Sent:</strong>
+  <%= @engagement.sent %>
+</p>
+
+<p>
+  <strong>Rehearsals:</strong>
+  <%= @engagement.rehearsals %>
+</p>
+
+<p>
+  <strong>Artiste:</strong>
+  <%= @engagement.artiste.name %>
+
+</p>
+
+<%= link_to 'Edit', edit_engagement_path(@engagement) %> |
+<%= link_to 'Back', engagements_path %> | <%= link_to 'Print', engagement_path(@engagement) + '/print' %>

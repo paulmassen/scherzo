@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Orfeo2</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+
+<!--==============TEST====================-->
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_pack_tag 'application','data-turbolinks-track': 'reload'  %>
+  <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+     
+<!--==============TEST====================--> 
+
+  </head>
+
+  <body>
+
+    <ul id="slide-out" class="sidenav sidenav-fixed">
+                  <li class="user-details cyan darken-2" style="background-image: url('<%= image_url('user-profile-bg.jpg')%>')">
+              <div class="row">
+                <div class="col col s4 m4 l4">
+                  <img src="<%= image_url('avatar.jpg') %>" alt="" class="circle responsive-img valign profile-image cyan">
+                </div>
+                <div class="col col s8 m8 l8">
+          
+                  <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" href="#" data-activates="profile-dropdown-nav">John Doe<i class="mdi-navigation-arrow-drop-down right"></i></a>
+                  <p class="user-roal">Administrator</p>
+                </div>
+              </div>
+            </li>
+      <li><a href="/dashboard" class="waves-effect waves-cyan"><i class="material-icons">dashboard</i>Dashboard</a></li>
+      <li><a href="/programmes" class="waves-effect waves-cyan"><i class="material-icons">queue_music</i>Programmes</a></li>
+      <li><a href="/engagements" class="waves-effect waves-cyan"> <i class="material-icons">border_all</i>Engagements</a></li>
+      <li><a href="/projects" class="waves-effect waves-cyan"> <i class="material-icons">work</i>Projects</a></li>
+      <li><a href="/projects" class="waves-effect waves-cyan"> <i class="material-icons">map</i>Map</a></li>
+      <li><a href="/calendar" class="waves-effect waves-cyan"> <i class="material-icons">view_agenda</i>Calendar</a></li>
+      <li><a href="/projects" class="waves-effect waves-cyan"> <i class="material-icons">today</i>Activities</a></li>
+      <li><a href="/artistes" class="waves-effect waves-cyan"> <i class="material-icons">person</i>Artistes</a></li>
+    </ul>
+    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+<div class="main">
+  <div class="container">
+    <%= yield %>
+    </div>
+</div>
+<footer class="page-footer gradient-45deg-light-blue-cyan">
+        <div class="footer-copyright">
+          <div class="container">
+            <span>Copyright © 2020 <a class="grey-text text-lighten-2" href="#" target="_blank">Paul Massendari</a> Tous droits réservés.</span>
+            <span class="right hide-on-small-only"> Design and Developed by <a class="grey-text text-lighten-2" href="#">Paul Massendari</a></span>
+          </div>
+        </div>
+    </footer>
+<script>
+$(".eventtype").change(function() {
+
+    if ($(this).val() == "Concert") {
+      console.log('concert triggered');
+      $(this).parent().siblings().children( ".eventend" ).hide();
+    };
+    // else if ($('#acc_type').val() == "savings") {rate = "0.8%";}
+    // $('#interest').val(rate);
+});
+
+  $('#calendar').fullCalendar({
+	schedulerLicenseKey : 'GPL-My-Project-Is-Open-Source',
+	editable : true,
+	selectable : true,
+	selectHelper : true,
+	header: {
+	  left: 'prev,next today',
+	  center: 'title',
+	  right: 'month, agendaWeek, agendaDay'
+	},
+	scrollTime : '00:00',
+	defaultDate : '2020-04-02',
+	events : '/engagements.json',
+	
+  eventRender: function(event, element) {
+            // Array that will store accepted classes
+            var eventAcceptedClasses = [];
+            if ($('.nicholas-angelich').is(':checked')){
+                eventAcceptedClasses.push('nicholas-angelich');
+            }
+            if ($('.khatia-buniatishvili').is(':checked')){
+                eventAcceptedClasses.push('khatia-buniatishvili');
+                console.log('displayed khatia');
+            }
+            if ($('.david-kadouch').is(':checked')){
+                eventAcceptedClasses.push('david-kadouch');
+            }
+            if ($('.lilya-zilberstein').is(':checked')){
+                eventAcceptedClasses.push('lilya-zilberstein');
+            }
+            if ($('.martha-argerich').is(':checked')){
+                eventAcceptedClasses.push('martha-argerich');
+            }
+            displayEvent = false;
+            event.className.forEach(function(element){
+                if ($.inArray(element, eventAcceptedClasses) != -1){
+                    displayEvent = true;
+                }
+            });
+            return displayEvent;
+        }
+});
+$('.events-filter-checkbox').on('change', function(){
+    $('#calendar').fullCalendar('rerenderEvents');
+});
+</script>
+  </body>
+</html>

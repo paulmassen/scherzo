@@ -1,0 +1,101 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @artiste.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @artiste.address %>
+</p>
+
+<p>
+  <strong>Birthdate:</strong>
+  <%= @artiste.birthdate %>
+</p>
+
+<p>
+  <strong>Passportnumber:</strong>
+  <%= @artiste.passportnumber %>
+</p>
+
+<p>
+  <strong>Passportdelivered:</strong>
+  <%= @artiste.passportdelivered %>
+</p>
+
+<p>
+  <strong>Passportexpire:</strong>
+  <%= @artiste.passportexpire %>
+</p>
+<!--< @artistesengagements.inspect.each do |engagement| %>-->
+<h3>Liste des Engagements</h3>
+<table>
+<thead>
+    <tr>
+      <th>Title</th>
+      <th>Begin</th>
+      <th>End</th>
+      <th>Contract</th>
+      <th>Voyages</th>
+      <th>Hotel</th>
+      <th>Taxi</th>
+      <th>Sent</th>
+      <th>Rehearsals</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+<% @artiste.engagements.each do |engagement| %>
+   <tr>
+        <td><%= engagement.title %></td>
+        <td><%= engagement.begin %></td>
+        <td><%= engagement.end %></td>
+        <% if engagement.contract? %>
+        <td><i class="material-icons">check</i></td>
+        <% else %>
+        <td><i class="material-icons">clear</i></td>
+        <% end %>
+        <% if engagement.voyages? %>
+        <td><i class="material-icons">check</i></td>
+        <% else %>
+        <td><i class="material-icons">clear</i></td>
+        <% end %>
+        <% if engagement.hotel? %>
+        <td><i class="material-icons">check</i></td>
+        <% else %>
+        <td><i class="material-icons">clear</i></td>
+        <% end %>
+        <% if engagement.taxi? %>
+        <td><i class="material-icons">check</i></td>
+        <% else %>
+        <td><i class="material-icons">clear</i></td>
+        <% end %>
+        <% if engagement.sent? %>
+        <td><i class="material-icons">check</i></td>
+        <% else %>
+        <td><i class="material-icons">clear</i></td>
+        <% end %>
+       
+         <% if engagement.rehearsals? %>
+        <td><i class="material-icons">check</i></td>
+        <% else %>
+        <td><i class="material-icons">clear</i></td>
+        <% end %>
+      
+      
+        <!--<td><#%= link_to 'Show', engagement %></td>-->
+        <td><%= link_to 'Edit', edit_engagement_path(engagement) %></td>
+        <td><%= link_to 'Destroy', engagement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+<% end %>
+</tbody>
+</table>
+
+<%= link_to 'Nouvel Engagement', new_engagement_path , class: 'btn' %> |
+
+<br>
+<%= link_to 'Edit', edit_artiste_path(@artiste) %> |
+<%= link_to 'Back', artistes_path %>

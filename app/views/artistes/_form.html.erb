@@ -1,0 +1,59 @@
+<%= form_with(model: artiste, local: true) do |form| %>
+  <% if artiste.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(artiste.errors.count, "error") %> prohibited this artiste from being saved:</h2>
+
+      <ul>
+        <% artiste.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_area :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :birthdate %>
+    <%= form.date_select :birthdate %>
+  </div>
+  <div class="row">
+  <div class="field col s12">
+    <%= form.label :passportnumber %>
+    <%= form.text_field :passportnumber %>
+  </div>
+
+  <div class="field col s6">
+    <%= form.label :passportdelivered %>
+    <%= form.date_select :passportdelivered %>
+  </div>
+
+  <div class="field col s6">
+    <%= form.label :passportexpire %>
+    <%= form.date_select :passportexpire %>
+  </div>
+  <div class="field col s12">
+    <%= form.label :color %>
+    <%= form.text_field :color %>
+  </div>
+  <div class="field cold s12">
+  <%= form.hidden_field :image, value: artiste.cached_image_data %>
+  <%= form.file_field :image %>
+  </div>
+  <div class="upload-preview">
+  
+</div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Enregistrer', :class => 'btn blue darken-2'%>
+  </div>
+<% end %>

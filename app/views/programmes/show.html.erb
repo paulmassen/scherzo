@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h2>
+  <strong>Title:</strong>
+  <%= @programme.title %>
+</h2>
+
+<p id="notice"><%= notice %></p>
+
+
+      <table>
+        <thead>
+          <tr>
+              <th>Titre</th>
+              <th>Opus</th>
+              <th>Compositeur</th>
+              <th>Durée</th>
+          </tr>
+        </thead>
+
+        <tbody>
+            
+<% @programme.works.each do |work| %>
+<tr>
+  <td><%= work.title %></td>
+<td><%= work.opus %></td>
+<td><%= work.composer %></td>
+ <td> <%= work.duration %></td>
+  </tr>
+<% end %>
+        </tbody>
+      </table>
+
+<%= link_to 'Edit', edit_programme_path(@programme) %> |
+<%= link_to 'Back', programmes_path %>

@@ -1,0 +1,7 @@
+<%= image_tag @artiste.image_url.to_s, height: "300" %>
+<h1>Editing Artiste</h1>
+
+<%= render 'form', artiste: @artiste %>
+
+<%= link_to 'Show', @artiste %> |
+<%= link_to 'Back', artistes_path %>

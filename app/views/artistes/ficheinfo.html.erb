@@ -1,0 +1,6 @@
+<h1><%= @artiste.name %></h1>
+<h3>Informations administratives</h3>
+<% unless @artiste.image_url.nil? || @artiste.image_url == 0 %>
+<%= image_tag @artiste.image_url %>
+<% end %>
+<button class="btn">Generate PDF</button>

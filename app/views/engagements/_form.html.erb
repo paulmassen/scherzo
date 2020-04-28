@@ -1,0 +1,108 @@
+<%= form_with(model: engagement, local: true) do |form| %>
+  <% if engagement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(engagement.errors.count, "error") %> prohibited this engagement from being saved:</h2>
+
+      <ul>
+        <% engagement.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="row">
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field col s6">
+    <%= form.label :begin %>
+    <%= form.text_field :begin, class: "datepicker" %>
+  </div>
+
+  <div class="field col s6">
+    <%= form.label :end %>
+    <%= form.text_field :end, class: "datepicker" %>
+  </div>
+
+  <div class="field">
+    <label>
+    <%= form.check_box :contract %>
+    <span>Contract</span>
+    </label>
+  </div>
+  <div class="field">
+<label>
+    <%= form.check_box :voyages %>
+    <span>Voyages</span>
+    </label>
+  </div>
+  <div class="field">
+<label>
+    <%= form.check_box :hotel %>
+    <span>Hotel</span>
+    </label>
+  </div>
+
+  <div class="field">
+       <label>
+    <%= form.check_box(:taxi) %>
+    <span>Taxi </span></label>
+    
+
+
+   </label>
+  </div>
+
+  <div class="field">
+     <label>
+    <%= form.check_box(:sent) %>
+<span>Sent </span>
+</label>
+  </div>
+  <div class="field">
+   <label>
+    <%= form.check_box :rehearsals %>
+     <span>Rehearsals</span>
+     </label>
+  </div>
+
+
+    <div class="input-field">
+    <%= form.collection_select :artiste_id, Artiste.all, :id, :name,{:class => 'dropdown'} %>
+  </div>
+
+  <div class="input-field">
+    <%= form.collection_select :programme_id, Programme.all, :id, :title,{:class => 'dropdown'} %>
+  </div>
+  <h3>Planning</h3>
+  <div>
+    <table>
+      <thead>
+      <th>Date</th>
+      <th>Type</th>
+      <th>Début</th>
+      <th>Fin</th>
+      <th>desc1</th>
+      <th>desc2</th>
+      <th>lieu</th>
+      <th>remove</th>
+      </thead>
+      <tbody>
+  
+    <%= form.fields_for :events do |event| %>
+      <%= render 'event_fields', :f => event %>
+    <% end %>
+    <tr id="tasks"></tr>
+    </tbody>
+      </table>
+    <%= link_to_add_association '<div class="btn">Add event</div>'.html_safe , form, :events, {'data-association-insertion-method': 'after', 'data-association-insertion-node': 'tr:last'} %>
+    
+    <h3>Conditions</h3>
+  </div>
+  <div class="actions">
+    <%= form.submit 'Enregistrer', :class => 'btn blue darken-2'%>
+  </div>
+</div>
+<% end %>
