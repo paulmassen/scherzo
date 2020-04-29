@@ -14,6 +14,7 @@ class ArtistesController < ApplicationController
   # GET /artistes/1.json
   def show
     @engagements = Engagement.all
+    #@futursengagements = Engagement.where(:begin.to_date.future?)
   end
   
   #def ficheinfo
@@ -68,6 +69,28 @@ class ArtistesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def printfiche
+    @artiste = Artiste.find(params[:id])
+    report = ODFReport::Report.new("/home/ubuntu/environment/myform/app/templates/fichederenseignements.odt") do |r|
+      r.add_field(:artiste, @artiste.name)
+      r.add_field(:datedenaissance, @artiste.birthdate)
+      r.add_field(:naissancecity, @artiste.birthplacecity)
+      r.add_field(:naissancepays, @artiste.birthplacecountry)
+      r.add_field(:nationalite, @artiste.nationality)
+      r.add_field(:familystatus, @artiste.familystatus)
+      r.add_field(:secu, @artiste.socialsecurity)
+      r.add_field(:congesspectacles, @artiste.congesspectacles)
+      r.add_field(:passportnumber, @artiste.passportnumber)
+      r.add_field(:audiens, @artiste.audiens)
+
+    end
+    
+    send_data report.generate,
+      type: 'application/vnd.oasis.opendocument.text',
+      disposition: 'attachment',
+      filename: 'fichederenseignements.odt'
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -77,6 +100,6 @@ class ArtistesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def artiste_params
-      params.require(:artiste).permit(:name, :address, :birthdate, :passportnumber, :passportdelivered, :passportexpire, :color, :image)
+      params.require(:artiste).permit(:name, :address, :birthdate, :passportnumber, :passportdelivered, :passportexpire, :color, :image, :birthplacecity, :birthplacedepartment, :birthplacecountry, :nationality, :familystatus, :maidenname, :socialsecurity, :congesspectacles, :audiens, :biography)
     end
 end

@@ -16,6 +16,8 @@
  *= require materialize-css
  *= require material_icons
  */
+ 
+ @import "./actiontext.scss";
 
 header, main, footer {
     margin-left: 300px;

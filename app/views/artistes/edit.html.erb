@@ -1,5 +1,5 @@
 <%= image_tag @artiste.image_url.to_s, height: "300" %>
-<h1>Editing Artiste</h1>
+<h1><%= @artiste.name %></h1>
 
 <%= render 'form', artiste: @artiste %>
 

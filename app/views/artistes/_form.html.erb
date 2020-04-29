@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :address %>
-    <%= form.text_area :address %>
+    <%= form.text_area :address , class:'materialize-textarea' %>
   </div>
 
   <div class="field">
@@ -26,30 +26,90 @@
     <%= form.date_select :birthdate %>
   </div>
   <div class="row">
-  <div class="field col s12">
-    <%= form.label :passportnumber %>
-    <%= form.text_field :passportnumber %>
-  </div>
+    
+  <ul class="collapsible expandable">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">perm_identity</i>Passeport</div>
+        <div class="collapsible-body">
+            
+          <div class="field col s12">
+            <%= form.label :passportnumber %>
+            <%= form.text_field :passportnumber %>
 
-  <div class="field col s6">
     <%= form.label :passportdelivered %>
-    <%= form.date_select :passportdelivered %>
-  </div>
+    <%= form.text_field :passportdelivered, class: 'datepicker'%>
 
-  <div class="field col s6">
     <%= form.label :passportexpire %>
-    <%= form.date_select :passportexpire %>
+    <%= form.text_field :passportexpire , class: 'datepicker'%>
   </div>
+        </div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+      <div class="collapsible-body">
+          <div class="field col s6">
+    <%= form.label :birthplacecity %>
+    <%= form.text_field :birthplacecity %>
+  </div>
+  <div class="field col s6">
+    <%= form.label :birthplacedepartment %>
+    <%= form.text_field :birthplacedepartment %>
+  </div>
+  <div class="field col s6">
+    <%= form.label :birthplacecountry %>
+    <%= form.text_field :birthplacecountry %>
+  </div>
+  <div class="field col s6">
+    <%= form.label :nationality %>
+    <%= form.text_field :nationality %>
+  </div>
+  <div class="field col s6">
+    <%= form.label :familystatus %>
+    <%= form.text_field :familystatus %>
+  </div>
+  <div class="field col s6">
+    <%= form.label :maidenname %>
+    <%= form.text_field :maidenname %>
+  </div>
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">whatshot</i>Informations Administratives</div>
+      <div class="collapsible-body">
+          <div class="field col s6">
+    <%= form.label :socialsecurity %>
+    <%= form.text_field :socialsecurity %>
+  </div>
+  <div class="field col s6">
+    <%= form.label :congesspectacles %>
+    <%= form.text_field :congesspectacles %>
+  </div>
+  <div class="field col s6">
+    <%= form.label :audiens %>
+    <%= form.text_field :audiens %>
+  </div>
+      
+      </div>
+    </li>
+  </ul>
+
+  
+
+
   <div class="field col s12">
     <%= form.label :color %>
     <%= form.text_field :color %>
   </div>
-  <div class="field cold s12">
+  <div class="field col s12">
   <%= form.hidden_field :image, value: artiste.cached_image_data %>
   <%= form.file_field :image %>
   </div>
   <div class="upload-preview">
   
+</div>
+<div class="field col s12">
+  <label>Biographie</label>
+  <%= form.rich_text_area :biography %>
 </div>
   </div>
 

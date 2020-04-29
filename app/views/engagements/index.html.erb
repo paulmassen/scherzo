@@ -5,16 +5,16 @@
 <table class="stripped highlight">
   <thead>
     <tr>
-      <th><%= link_to "title", :sort => 'title' %></th>
-      <th><%= link_to "begin", :sort => 'begin' %></th>
-      <th><%= link_to "end", :sort => 'end' %></th>
-      <th><%= link_to "contract", :sort => 'contract' %></th>
-      <th><%= link_to "voyages", :sort => 'voyages' %></th>
-      <th><%= link_to "hotel", :sort => 'hotel' %></th>
-      <th><%= link_to "taxi", :sort => 'taxi' %></th>
-      <th><%= link_to "sent", :sort => 'sent' %></th>
-      <th><%= link_to "rehearsals", :sort => 'rehearsals' %></th>
-      <th><%= link_to "artiste", :sort => 'artiste' %></th>
+      <th><%= link_to "Titre", :sort => 'title' %></th>
+      <th><%= link_to "Début", :sort => 'begin' %></th>
+      <th><%= link_to "Fin", :sort => 'end' %></th>
+      <th><%= link_to "Contrat", :sort => 'contract' %></th>
+      <th><%= link_to "Voyages", :sort => 'voyages' %></th>
+      <th><%= link_to "Hotel", :sort => 'hotel' %></th>
+      <th><%= link_to "Transfert", :sort => 'taxi' %></th>
+      <th><%= link_to "Envoyé", :sort => 'sent' %></th>
+      <th><%= link_to "Répétitions", :sort => 'rehearsals' %></th>
+      <th><%= link_to "Artiste", :sort => 'artiste' %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -59,8 +59,8 @@
       
         <td><%= @artistes.find(engagement.artiste_id).name %></td>
         <!--<td><#%= link_to 'Show', engagement %></td>-->
-        <td><%= link_to 'Edit', edit_engagement_path(engagement) %></td>
-        <td><%= link_to 'Destroy', engagement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '<i class="material-icons">edit</i>'.html_safe , edit_engagement_path(engagement) %></td>
+        <td><%= link_to '<i class="material-icons">delete</i>'.html_safe, engagement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

@@ -11,6 +11,8 @@ require("jquery");
 require("src/cocoon");
 require("moment");
 require("fullcalendar");
+require("trix");
+require("@rails/actiontext");
 //require("jquery-ui");
 //require("materialize-css")
 // jquery
@@ -36,6 +38,8 @@ import 'materialize-css/dist/js/materialize.js';
 function eventCalendar() {
   return $('#calendar').fullCalendar({ });
 };
+
+
 function clearCalendar() {
   $('#calendar').fullCalendar('delete'); 
   $('#calendar').html('');
@@ -50,9 +54,15 @@ function clearCalendar() {
       },
     });
 
+    
+
     $('select').formSelect();
     $('.datepicker').datepicker();
     $('.sidenav').sidenav();
+    $('.collapsible').collapsible(
+      {
+        accordion: false
+      });
     $(document).on('turbolinks:load', function(){
   eventCalendar();  
 });
@@ -62,3 +72,6 @@ $(document).on('turbolinks:before-cache', clearCalendar);
       
   });
   
+
+require("trix")
+require("@rails/actiontext")
