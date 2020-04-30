@@ -3,4 +3,6 @@ module ApplicationHelper
         link_to content_tag(:i, icon_name, :class => "material-icons"), link
     end
 end
+
+
 # <%= content_tag(:i, "close", class: "material-icons") %>

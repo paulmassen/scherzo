@@ -16,11 +16,11 @@
     <%= form.text_field :title %>
   </div>
     <div class="input-field">
-    <%= form.collection_select :artiste_id, Artiste.all, :id, :name,{:class => 'dropdown'} %>
+    <%= form.collection_select :artiste_id, Artiste.all, :id, :name, { :class => "dropdown" } %>
   </div>
   <div class="input-field">
     <p>Statut de l'engagement</p>
-      <%= form.select :status, [['Confirmé','confirmed'],['Invitation','invitation'],['Option','option']] ,{}, { :class => 'browser-default', :id => 'eventtype' } %>
+      <%= form.select :status, [["Confirmé", "confirmed"], ["Invitation", "invitation"], ["Option", "option"]], {}, { :class => "browser-default", :id => "eventtype" } %>
       </div>
   <div class="field col s6">
     <%= form.label :begin %>
@@ -75,7 +75,7 @@
 
 
   <div class="input-field">
-    <%= form.collection_select :programme_id, Programme.all, :id, :title,{:class => 'dropdown'} %>
+    <%= form.collection_select :programme_id, Programme.all, :id, :title, { :class => "dropdown" } %>
   </div>
   <h3>Planning</h3>
   <div>
@@ -93,17 +93,17 @@
       <tbody>
   
     <%= form.fields_for :events do |event| %>
-      <%= render 'event_fields', :f => event %>
+      <%= render "event_fields", :f => event %>
     <% end %>
     <tr id="tasks"></tr>
     </tbody>
       </table>
-    <%= link_to_add_association '<div class="btn">Add event</div>'.html_safe , form, :events, {'data-association-insertion-method': 'after', 'data-association-insertion-node': 'tr:last'} %>
+    <%= link_to_add_association '<div class="btn">Add event</div>'.html_safe, form, :events, { 'data-association-insertion-method': "after", 'data-association-insertion-node': "tr:last" } %>
     
     <h3>Conditions</h3>
   </div>
   <div class="actions">
-    <%= form.submit 'Enregistrer', :class => 'btn blue darken-2'%>
+    <%= form.submit "Enregistrer", :class => "btn blue darken-2" %>
   </div>
 
 </div>

@@ -1,16 +1,16 @@
  <div class='nested-fields row'>
     <div class="input-field field">
-      <%#= f.label :eventtype %>
-      <%= f.select :eventtype, [['Répétitions', 'Rehearsals'], ['Avion','Flight'],['Train', 'Train']] ,{}, { :class => 'browser-default', :id => 'eventtype' } %>
-      <%#= f.text_field :eventtype, class: 'eventtype-autocomplete' %>
+      <% #= f.label :eventtype %>
+      <%= f.select :eventtype, [["Répétitions", "Rehearsals"], ["Avion", "Flight"], ["Train", "Train"]], {}, { :class => "browser-default", :id => "eventtype" } %>
+      <% #= f.text_field :eventtype, class: 'eventtype-autocomplete' %>
 
     </div>
     <div class="field col s12">
-      <%#= f.label :eventdate  %>
+      <% #= f.label :eventdate %>
       <%= f.date_field :eventdate %>
     </div>
     <div class="field col s6">
-      <%= f.label :eventbegin  %>
+      <%= f.label :eventbegin %>
       <%= f.time_field :eventbegin %>
     </div>
     <div class="field col s6">
@@ -18,11 +18,11 @@
       <%= f.time_field :eventend %>
     </div>
     <div class="field col s6">
-      <%= f.label :description1 , id: 'description1' %>
+      <%= f.label :description1, id: "description1" %>
       <%= f.text_area :description1 %>
     </div>
     <div class="field col s6">
-      <%= f.label :description2 , id: 'description2' %>
+      <%= f.label :description2, id: "description2" %>
       <%= f.text_area :description2 %>
     </div>
     <div class="field">

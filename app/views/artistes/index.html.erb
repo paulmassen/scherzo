@@ -24,9 +24,9 @@
         <td><%= artiste.passportnumber %></td>
         <td><%= artiste.passportdelivered %></td>
         <td><%= artiste.passportexpire %></td>
-        <td><%= link_to 'Show', artiste %></td>
-        <td><%= link_to 'Edit', edit_artiste_path(artiste) %></td>
-        <td><%= link_to 'Destroy', artiste, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to "Show", artiste %></td>
+        <td><%= link_to "Edit", edit_artiste_path(artiste) %></td>
+        <td><%= link_to "Destroy", artiste, method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +34,4 @@
 
 <br>
 
-<%= link_to 'New Artiste', new_artiste_path, class: 'btn amber darken-3' %>
+<%= link_to "New Artiste", new_artiste_path, class: "btn amber darken-3" %>

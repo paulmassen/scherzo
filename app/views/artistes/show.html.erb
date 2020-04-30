@@ -23,262 +23,36 @@
    <strong>Passportexpire:</strong>
    <%= @artiste.passportexpire %>
 </p>
-<%= link_to '<i class="material-icons">print</i>Imprimer'.html_safe, artiste_path + '/printfiche', class: 'btn amber darken-3' %>
-<!--< @artistesengagements.inspect.each do |engagement| %>-->
+<%= link_to '<i class="material-icons">print</i>Imprimer'.html_safe, artiste_path + "/printfiche", class: "btn amber darken-3" %>
+<!--< @artistesengagements.inspect.each do |engagement|   %>-->
 <hr>
 <ul class="collapsible">
    <li>
-      <div class="collapsible-header"><i class="material-icons">next_week</i><%= @artiste.engagements.where("begin > ?", Date.today).where("status == ?", 'confirmed').size %> Futurs Engagements</div>
+      <div class="collapsible-header"><i class="material-icons">next_week</i><%= @futursengagements.size %> Futurs Engagements</div>
       <div class="collapsible-body">
-         <table>
-            <thead>
-               <tr>
-                  <th>Title</th>
-                  <th>Begin</th>
-                  <th>End</th>
-                  <th>Contract</th>
-                  <th>Voyages</th>
-                  <th>Hotel</th>
-                  <th>Taxi</th>
-                  <th>Sent</th>
-                  <th>Rehearsals</th>
-                  <th colspan="3"></th>
-               </tr>
-            </thead>
-            <tbody>
-               <% @artiste.engagements.where("begin > ?", Date.today).where("status == ?", 'confirmed').each do |engagement| %>
-               <%# if engagement.begin >= Date.today && engagement.status == 'confirmed' %>
-               <tr>
-                  <td><%= engagement.title %></td>
-                  <td><%= engagement.begin %></td>
-                  <td><%= engagement.end %></td>
-                  <% if engagement.contract? %>
-                  <td><i class="material-icons">check</i></td>
-                  <% else %>
-                  <td><i class="material-icons">clear</i></td>
-                  <% end %>
-                  <% if engagement.voyages? %>
-                  <td><i class="material-icons">check</i></td>
-                  <% else %>
-                  <td><i class="material-icons">clear</i></td>
-                  <% end %>
-                  <% if engagement.hotel? %>
-                  <td><i class="material-icons">check</i></td>
-                  <% else %>
-                  <td><i class="material-icons">clear</i></td>
-                  <% end %>
-                  <% if engagement.taxi? %>
-                  <td><i class="material-icons">check</i></td>
-                  <% else %>
-                  <td><i class="material-icons">clear</i></td>
-                  <% end %>
-                  <% if engagement.sent? %>
-                  <td><i class="material-icons">check</i></td>
-                  <% else %>
-                  <td><i class="material-icons">clear</i></td>
-                  <% end %>
-                  <% if engagement.rehearsals? %>
-                  <td><i class="material-icons">check</i></td>
-                  <% else %>
-                  <td><i class="material-icons">clear</i></td>
-                  <% end %>
-                  <!--<td><#%= link_to 'Show', engagement %></td>-->
-                  <td><%= link_to '<i class="material-icons">edit</i>'.html_safe, edit_engagement_path(engagement) %></td>
-                  <td><%= link_to '<i class="material-icons">delete</i>'.html_safe, engagement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-               </tr>
-               <%# end %>
-               <% end %>
-            </tbody>
-         </table>
+         <%= render partial: "engagement_table", locals: {concerts: @futursengagements} %>
+        
+         
+           
       </div>
    </li>
    <li>
-      <div class="collapsible-header"><i class="material-icons">history</i><%= @artiste.engagements.where("end <= ?", Date.today).where("status == ?", "confirmed").size %> Engagements Passés</div>
+      <div class="collapsible-header"><i class="material-icons">history</i><%= @pastengagements.size %> Engagements Passés</div>
       <div class="collapsible-body">
-         <table>
-            <thead>
-               <tr>
-                  <th>Title</th>
-                  <th>Begin</th>
-                  <th>End</th>
-                  <th>Contract</th>
-                  <th>Voyages</th>
-                  <th>Hotel</th>
-                  <th>Taxi</th>
-                  <th>Sent</th>
-                  <th>Rehearsals</th>
-                  <th colspan="3"></th>
-               </tr>
-            </thead>
-            <tbody>
-               <% @artiste.engagements.where("end <= ?", Date.today).where("status == ?", "confirmed").each do |engagement| %>
-               <tr>
-                  <td><%= engagement.title %></td>
-                  <td><%= engagement.begin %></td>
-                  <td><%= engagement.end %></td>
-                  <% if engagement.contract? %>
-                  <td><i class="material-icons">check</i></td>
-                  <% else %>
-                  <td><i class="material-icons">clear</i></td>
-                  <% end %>
-                  <% if engagement.voyages? %>
-                  <td><i class="material-icons">check</i></td>
-                  <% else %>
-                  <td><i class="material-icons">clear</i></td>
-                  <% end %>
-                  <% if engagement.hotel? %>
-                  <td><i class="material-icons">check</i></td>
-                  <% else %>
-                  <td><i class="material-icons">clear</i></td>
-                  <% end %>
-                  <% if engagement.taxi? %>
-                  <td><i class="material-icons">check</i></td>
-                  <% else %>
-                  <td><i class="material-icons">clear</i></td>
-                  <% end %>
-                  <% if engagement.sent? %>
-                  <td><i class="material-icons">check</i></td>
-                  <% else %>
-                  <td><i class="material-icons">clear</i></td>
-                  <% end %>
-                  <% if engagement.rehearsals? %>
-                  <td><i class="material-icons">check</i></td>
-                  <% else %>
-                  <td><i class="material-icons">clear</i></td>
-                  <% end %>
-                  <!--<td><#%= link_to 'Show', engagement %></td>-->
-                  <td><%= link_to '<i class="material-icons ">edit</i>'.html_safe, edit_engagement_path(engagement) %></td>
-                  <td><%= link_to '<i class="material-icons ">delete</i>'.html_safe, engagement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-               </tr>
-               <% end %>
-            </tbody>
-         </table>
+         <%= render partial: "engagement_table", locals: {concerts: @pastengagements} %>
+        
       </div>
    </li>
    <li>
-      <div class="collapsible-header"><i class="material-icons">insert_invitation</i><%= @artiste.engagements.where("status == ?", "option").size %> Options à confirmer</div>
+      <div class="collapsible-header"><i class="material-icons">insert_invitation</i><%= @optionengagements.size %> Options à confirmer</div>
       <div class="collapsible-body">
-         <table>
-            <thead>
-               <tr>
-                  <th>Title</th>
-                  <th>Begin</th>
-                  <th>End</th>
-                  <th>Contract</th>
-                  <th>Voyages</th>
-                  <th>Hotel</th>
-                  <th>Taxi</th>
-                  <th>Sent</th>
-                  <th>Rehearsals</th>
-                  <th colspan="3"></th>
-               </tr>
-            </thead>
-            <tbody>
-               <% @artiste.engagements.where("status == ?", "option").each do |engagement| %>
-               <tr>
-                  <td><%= engagement.title %></td>
-                  <td><%= engagement.begin %></td>
-                  <td><%= engagement.end %></td>
-                  <% if engagement.contract? %>
-                  <td><i class="material-icons">check</i></td>
-                  <% else %>
-                  <td><i class="material-icons">clear</i></td>
-                  <% end %>
-                  <% if engagement.voyages? %>
-                  <td><i class="material-icons">check</i></td>
-                  <% else %>
-                  <td><i class="material-icons">clear</i></td>
-                  <% end %>
-                  <% if engagement.hotel? %>
-                  <td><i class="material-icons">check</i></td>
-                  <% else %>
-                  <td><i class="material-icons">clear</i></td>
-                  <% end %>
-                  <% if engagement.taxi? %>
-                  <td><i class="material-icons">check</i></td>
-                  <% else %>
-                  <td><i class="material-icons">clear</i></td>
-                  <% end %>
-                  <% if engagement.sent? %>
-                  <td><i class="material-icons">check</i></td>
-                  <% else %>
-                  <td><i class="material-icons">clear</i></td>
-                  <% end %>
-                  <% if engagement.rehearsals? %>
-                  <td><i class="material-icons">check</i></td>
-                  <% else %>
-                  <td><i class="material-icons">clear</i></td>
-                  <% end %>
-                  <!--<td><#%= link_to 'Show', engagement %></td>-->
-                  <td><%= link_to '<i class="material-icons ">edit</i>'.html_safe, edit_engagement_path(engagement) %></td>
-                  <td><%= link_to '<i class="material-icons ">delete</i>'.html_safe, engagement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-               </tr>
-               <% end %>
-            </tbody>
-         </table>
+        <%= render partial: "engagement_table", locals: {concerts: @optionengagements} %>
       </div>
    </li>
    <li>
-      <div class="collapsible-header"><i class="material-icons">hourglass_empty</i><%= @artiste.engagements.where("status == ?", "invitation").size %> Invitations en attente </div>
+      <div class="collapsible-header"><i class="material-icons">hourglass_empty</i><%= @pendinginvitations.size %> Invitations en attente </div>
       <div class="collapsible-body">
-         <table>
-            <thead>
-               <tr>
-                  <th>Title</th>
-                  <th>Begin</th>
-                  <th>End</th>
-                  <th>Contract</th>
-                  <th>Voyages</th>
-                  <th>Hotel</th>
-                  <th>Taxi</th>
-                  <th>Sent</th>
-                  <th>Rehearsals</th>
-                  <th colspan="3"></th>
-               </tr>
-            </thead>
-            <tbody>
-               <% @artiste.engagements.where("status == ?", "invitation").each do |engagement| %>
-               <tr>
-                  <td><%= engagement.title %></td>
-                  <td><%= engagement.begin %></td>
-                  <td><%= engagement.end %></td>
-                  <% if engagement.contract? %>
-                  <td><i class="material-icons">check</i></td>
-                  <% else %>
-                  <td><i class="material-icons">clear</i></td>
-                  <% end %>
-                  <% if engagement.voyages? %>
-                  <td><i class="material-icons">check</i></td>
-                  <% else %>
-                  <td><i class="material-icons">clear</i></td>
-                  <% end %>
-                  <% if engagement.hotel? %>
-                  <td><i class="material-icons">check</i></td>
-                  <% else %>
-                  <td><i class="material-icons">clear</i></td>
-                  <% end %>
-                  <% if engagement.taxi? %>
-                  <td><i class="material-icons">check</i></td>
-                  <% else %>
-                  <td><i class="material-icons">clear</i></td>
-                  <% end %>
-                  <% if engagement.sent? %>
-                  <td><i class="material-icons">check</i></td>
-                  <% else %>
-                  <td><i class="material-icons">clear</i></td>
-                  <% end %>
-                  <% if engagement.rehearsals? %>
-                  <td><i class="material-icons">check</i></td>
-                  <% else %>
-                  <td><i class="material-icons">clear</i></td>
-                  <% end %>
-                  <!--<td><#%= link_to 'Show', engagement %></td>-->
-                  <td><%= link_to '<i class="material-icons ">edit</i>'.html_safe, edit_engagement_path(engagement) %></td>
-                  <td><%= link_to '<i class="material-icons ">delete</i>'.html_safe, engagement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-               </tr>
-               <% end %>
-            </tbody>
-         </table>
+        <%= render partial: "engagement_table", locals: {concerts: @pendinginvitations} %>
       </div>
    </li>
 </ul>
