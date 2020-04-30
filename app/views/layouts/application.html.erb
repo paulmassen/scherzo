@@ -77,6 +77,7 @@ $(".eventtype").change(function() {
 });
 
   $('#calendar').fullCalendar({
+  //var calendar = $(this);
 	schedulerLicenseKey : 'GPL-My-Project-Is-Open-Source',
 	editable : true,
 	selectable : true,
@@ -89,6 +90,12 @@ $(".eventtype").change(function() {
 	scrollTime : '00:00',
 	defaultDate : '2020-04-02',
 	events : '/engagements.json',
+	select: function(start, end){
+	  $.getScript('/engagements/new', function(){
+	    
+	  });
+	  //calendar.fullCalendar('unselect')
+	}
 	
 /*  eventRender: function(event, element) {
             // Array that will store accepted classes
