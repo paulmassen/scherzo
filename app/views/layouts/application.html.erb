@@ -48,6 +48,7 @@
       <li><a href="/calendar" class="waves-effect waves-cyan"> <i class="material-icons">view_agenda</i>Calendar</a></li>
       <li><a href="/projects" class="waves-effect waves-cyan"> <i class="material-icons">today</i>Activities</a></li>
       <li><a href="/artistes" class="waves-effect waves-cyan"> <i class="material-icons">person</i>Artistes</a></li>
+      <li><a href="/structures" class="waves-effect waves-cyan"> <i class="material-icons">person</i>Structures</a></li>
       <li><a href="/settings" class="waves-effect waves-cyan"> <i class="material-icons">settings</i>Reglages</a></li>
     </ul>
     <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -65,69 +66,6 @@
           </div>
         </div>
     </footer>
-<script>
-$(".eventtype").change(function() {
 
-    if ($(this).val() == "Concert") {
-      console.log('concert triggered');
-      $(this).parent().siblings().children( ".eventend" ).hide();
-    };
-    // else if ($('#acc_type').val() == "savings") {rate = "0.8%";}
-    // $('#interest').val(rate);
-});
-
-  $('#calendar').fullCalendar({
-  //var calendar = $(this);
-	schedulerLicenseKey : 'GPL-My-Project-Is-Open-Source',
-	editable : true,
-	selectable : true,
-	selectHelper : true,
-	header: {
-	  left: 'prev,next today',
-	  center: 'title',
-	  right: 'month, agendaWeek, agendaDay'
-	},
-	scrollTime : '00:00',
-	defaultDate : '2020-04-02',
-	events : '/engagements.json',
-	select: function(start, end){
-	  $.getScript('/engagements/new', function(){
-	    
-	  });
-	  //calendar.fullCalendar('unselect')
-	}
-	
-/*  eventRender: function(event, element) {
-            // Array that will store accepted classes
-            var eventAcceptedClasses = [];
-            if ($('.nicholas-angelich').is(':checked')){
-                eventAcceptedClasses.push('nicholas-angelich');
-            }
-            if ($('.khatia-buniatishvili').is(':checked')){
-                eventAcceptedClasses.push('khatia-buniatishvili');
-             
-            }
-            if ($('.david-kadouch').is(':checked')){
-                eventAcceptedClasses.push('david-kadouch');
-            }
-            if ($('.lilya-zilberstein').is(':checked')){
-                eventAcceptedClasses.push('lilya-zilberstein');
-            }
-            if ($('.martha-argerich').is(':checked')){
-                eventAcceptedClasses.push('martha-argerich');
-            }
-            displayEvent = false;
-            event.className.forEach(function(element){
-                if ($.inArray(element, eventAcceptedClasses) != -1){
-                    displayEvent = true;
-                }
-            });
-            return displayEvent;
-        }*/
-});
-$('.events-filter-checkbox').on('change', function(){
-    $('#calendar').fullCalendar('rerenderEvents');
-});
-</script>
   </body>
 </html>

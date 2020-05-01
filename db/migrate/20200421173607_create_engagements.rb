@@ -9,8 +9,6 @@ class CreateEngagements < ActiveRecord::Migration[6.0]
       t.boolean :taxi
       t.boolean :sent
       t.boolean :rehearsals
-      t.string :artiste
-
       t.timestamps
     end
   end

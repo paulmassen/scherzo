@@ -26,6 +26,8 @@
 <%= link_to '<i class="material-icons">print</i>Imprimer'.html_safe, artiste_path + "/printfiche", class: "btn amber darken-3" %>
 <!--< @artistesengagements.inspect.each do |engagement|   %>-->
 <hr>
+
+<h3>Engagements</h3>
 <ul class="collapsible">
    <li>
       <div class="collapsible-header"><i class="material-icons">next_week</i><%= @futursengagements.size %> Futurs Engagements</div>
@@ -58,5 +60,6 @@
 </ul>
 <br>
 <hr>
+<h3>Programmes</h3>
 <%= link_to '<div class="btn blue lighten-1"><i class="material-icons ">edit</i> Editer</div>'.html_safe, edit_artiste_path(@artiste) %> 
 <%= link_to '<div class="btn amber lighten-1"><i class="material-icons ">arrow_back</i> Retour</div>'.html_safe, artistes_path %>

@@ -56,7 +56,7 @@ class EngagementsController < ApplicationController
 
     respond_to do |format|
       if @engagement.save
-        format.html { redirect_to action: 'index', notice: 'Engagement was successfully created.' }
+        format.html { redirect_back fallback_location: index, notice: 'Engagement was successfully created.' }
         format.json { render :show, status: :created, location: @engagement }
       else
         format.html { render :new }

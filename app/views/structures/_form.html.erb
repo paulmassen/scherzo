@@ -1,0 +1,15 @@
+<%= form_for @structure do |f| %>
+  <div class="field">
+    <%= f.label :title %>
+    <br/>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :address %>
+    <br/>
+    <%= f.text_field :address %>
+  </div>
+ 
+  
+  <%= f.submit 'Save' %>
+<% end %>

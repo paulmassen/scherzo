@@ -35,15 +35,15 @@ global.jQuery = $
 //import 'sidenav';
 //import "controllers";
 import 'materialize-css/dist/js/materialize.js';
-function eventCalendar() {
+/*function eventCalendar() {
   return $('#calendar').fullCalendar({ });
 };
+*/
 
-
-function clearCalendar() {
+/*function clearCalendar() {
   $('#calendar').fullCalendar('delete'); 
   $('#calendar').html('');
-};
+};*/
 
   $(document).on('turbolinks:load', function(){
     $('.composer-autocomplete').autocomplete({
@@ -63,15 +63,12 @@ function clearCalendar() {
       {
         accordion: false
       });
-    $(document).on('turbolinks:load', function(){
+/*    $(document).on('turbolinks:load', function(){
   eventCalendar();  
-});
+});*/
 
 
-$(document).on('turbolinks:before-cache', clearCalendar);
+/*$(document).on('turbolinks:before-cache', clearCalendar);*/
       
   });
   
-
-require("trix")
-require("@rails/actiontext")

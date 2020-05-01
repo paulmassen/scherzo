@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_01_105424) do
+ActiveRecord::Schema.define(version: 2020_04_30_162105) do
 
   create_table "Engagements_Structures", id: false, force: :cascade do |t|
     t.integer "Engagement_id", null: false
@@ -50,29 +50,8 @@ ActiveRecord::Schema.define(version: 2020_05_01_105424) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "artistes", force: :cascade do |t|
-    t.string "name"
-    t.date "birthdate"
-    t.string "passportnumber"
-    t.date "passportdelivered"
-    t.date "passportexpire"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "color"
-    t.text "image_data"
-    t.string "flightcompany"
-    t.string "birthplacecity"
-    t.string "birthplacedepartment"
-    t.string "birthplacecountry"
-    t.string "nationality"
-    t.string "familystatus"
-    t.string "maidenname"
-    t.string "socialsecurity"
-    t.string "congesspectacles"
-    t.string "audiens"
-    t.text "biography"
-    t.text "address"
-  end
+# Could not dump table "artistes" because of following StandardError
+#   Unknown type 'reference' for column 'engagement'
 
   create_table "engagements", force: :cascade do |t|
     t.string "title"
@@ -83,6 +62,7 @@ ActiveRecord::Schema.define(version: 2020_05_01_105424) do
     t.boolean "taxi"
     t.boolean "sent"
     t.boolean "rehearsals"
+    t.string "artiste"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "programme_id"

@@ -1,13 +1,112 @@
-<div class="events-filter-checkbox">
+<style>
+
+.container {
+    width: 100%!important; 
+}
+</style>
+<div class="row">
+<div class="events-filter-checkbox col s2">
+      <ul class="collapsible">
 <% @artistes.each do |artiste| %>
-<div>
-    <label>
-        <input type="checkbox" class="<%= artiste.name.parameterize %>" checked/>
-        <span><%= artiste.name %></span>
-    </label>
-</div>
+
+    <li>
+      <div class="collapsible-header">
+        <label>
+          <input type="checkbox" class="<%= artiste.name.parameterize %>"/>
+            <span></span>
+        </label>
+        <%= artiste.name %>
+      </div>
+      <div class="collapsible-body">
+          <div class="switch">
+            <label>
+              Option
+              <input type="checkbox">
+              <span class="lever"></span>
+              
+            </label>
+          </div>
+          <div class="switch">
+            <label>
+              Invitation
+              <input type="checkbox">
+              <span class="lever"></span>
+              
+            </label>
+          </div>
+      </div>
+    </li>
+
+
 <% end %>
+</ul>
+</div>
+
+<div id="calendar" class="col s10"></div>
+
 </div>
 <div id="modalEngagements" class="modal">Test Modal box</div>
+<script>
+$(".eventtype").change(function() {
 
-<div id="calendar"></div>
+    if ($(this).val() == "Concert") {
+      console.log('concert triggered');
+      $(this).parent().siblings().children( ".eventend" ).hide();
+    };
+    // else if ($('#acc_type').val() == "savings") {rate = "0.8%";}
+    // $('#interest').val(rate);
+});
+
+  $('#calendar').fullCalendar({
+  //var calendar = $(this);
+	schedulerLicenseKey : 'GPL-My-Project-Is-Open-Source',
+	editable : true,
+	selectable : true,
+	selectHelper : true,
+	header: {
+	  left: 'prev,next today',
+	  center: 'title',
+	  right: 'month, agendaWeek, agendaDay'
+	},
+	scrollTime : '00:00',
+	defaultDate : '2020-04-02',
+	events : '/engagements.json',
+	select: function(start, end){
+	  $.getScript('/engagements/new', function(){
+	    
+	  });
+	  //calendar.fullCalendar('unselect')
+	}
+	
+/*  eventRender: function(event, element) {
+            // Array that will store accepted classes
+            var eventAcceptedClasses = [];
+            if ($('.nicholas-angelich').is(':checked')){
+                eventAcceptedClasses.push('nicholas-angelich');
+            }
+            if ($('.khatia-buniatishvili').is(':checked')){
+                eventAcceptedClasses.push('khatia-buniatishvili');
+             
+            }
+            if ($('.david-kadouch').is(':checked')){
+                eventAcceptedClasses.push('david-kadouch');
+            }
+            if ($('.lilya-zilberstein').is(':checked')){
+                eventAcceptedClasses.push('lilya-zilberstein');
+            }
+            if ($('.martha-argerich').is(':checked')){
+                eventAcceptedClasses.push('martha-argerich');
+            }
+            displayEvent = false;
+            event.className.forEach(function(element){
+                if ($.inArray(element, eventAcceptedClasses) != -1){
+                    displayEvent = true;
+                }
+            });
+            return displayEvent;
+        }*/
+});
+$('.events-filter-checkbox').on('change', function(){
+    $('#calendar').fullCalendar('rerenderEvents');
+});
+</script>
