@@ -1,0 +1,23 @@
+  <div class='nested-fields'>
+    <div class="field">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+    <div class="field">
+      <%= f.label :address %>
+      <%= f.text_field :address %>
+    </div>
+  </div>
+      <td><%= link_to_remove_association '<i class="material-icons">clear</i>'.html_safe, f %></td>
+<!--         <div class="col s6 m6">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title"><%# structure.title %></span>
+          <p><%# structure.address %></p>
+        </div>
+        <div class="card-action">
+          <a href="#">This is a link</a>
+          <a href="#">This is a link</a>
+        </div>
+      </div>
+    </div>-->

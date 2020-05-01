@@ -1,0 +1,2 @@
+class EngagementsStructure < ApplicationRecord
+end

@@ -9,6 +9,10 @@
   <strong>Address:</strong>
   <%= @structure.address %>
 </p>
+<h3>Liste des engagements associés</h3>
+<% @structure.engagements.each do |engagement| %>
+<p><%= engagement.title %></p><br>
+<% end %>
 
 <%= link_to 'Edit', edit_structure_path(@structure) %> |
 <%= link_to 'Back', structures_path %>

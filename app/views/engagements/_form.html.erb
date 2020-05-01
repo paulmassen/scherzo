@@ -22,6 +22,10 @@
     <p>Statut de l'engagement</p>
       <%= form.select :status, [["Confirmé", "confirmed"], ["Invitation", "invitation"], ["Option", "option"]], {}, { :class => "browser-default", :id => "eventtype" } %>
       </div>
+  <div class="input-field">
+    <p>Type d'engagement</p>
+      <%= form.select :category, [["Musique de Chambre", "chamber"], ["Solo Recital", "solorecital"], ["Duo Recital", "duorecital"], ["Avec Orchestre", "orchestra"]], {}, { :class => "browser-default", :id => "eventtype" } %>
+      </div>
   <div class="field col s6">
     <%= form.label :begin %>
     <%= form.text_field :begin, class: "datepicker" %>
@@ -31,7 +35,23 @@
     <%= form.label :end %>
     <%= form.text_field :end, class: "datepicker" %>
   </div>
+  <div class="row">
+    <h3>Organisation</h3>
+    <div id='tasks'>
+    <%= form.fields_for :structures do |structure| %>
+      <%= render 'structure_fields', :f => structure %>
+    <% end %>
+    <div class='links'>
+      <%= link_to_add_association 'add structure', form, :structures %>
+    </div>
+  </div>
 
+          
+
+  </div>
+  <div class="row">
+    <h3>To-do Liste</h3>
+<div class="col s6">
   <div class="field">
     <label>
     <%= form.check_box :contract %>
@@ -50,7 +70,8 @@
     <span>Hotel</span>
     </label>
   </div>
-
+</div>
+<div class="col s6">
   <div class="field">
        <label>
     <%= form.check_box(:taxi) %>
@@ -70,8 +91,8 @@
      <span>Rehearsals</span>
      </label>
   </div>
-
-
+</div>
+</div>
 
 
   <div class="input-field">

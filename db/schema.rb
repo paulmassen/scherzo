@@ -10,14 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_01_105424) do
-
-  create_table "Engagements_Structures", id: false, force: :cascade do |t|
-    t.integer "Engagement_id", null: false
-    t.integer "Structure_id", null: false
-    t.index ["Engagement_id", "Structure_id"], name: "index_Engagements_Structures_on_engagement_id_and_structure_id"
-    t.index ["Structure_id", "Engagement_id"], name: "index_Engagements_Structures_on_structure_id_and_engagement_id"
-  end
+ActiveRecord::Schema.define(version: 2020_05_01_141224) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -89,8 +82,16 @@ ActiveRecord::Schema.define(version: 2020_05_01_105424) do
     t.boolean "voyages"
     t.integer "artiste_id"
     t.string "status"
+    t.string "category"
     t.index ["artiste_id"], name: "index_engagements_on_artiste_id"
     t.index ["programme_id"], name: "index_engagements_on_programme_id"
+  end
+
+  create_table "engagements_structures", id: false, force: :cascade do |t|
+    t.integer "engagement_id"
+    t.integer "structure_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "events", force: :cascade do |t|
