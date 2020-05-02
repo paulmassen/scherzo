@@ -7,7 +7,7 @@ class EngagementsController < ApplicationController
   def index
     @engagements = Engagement.order(params[:sort])
    # @artiste = Artiste.find(engagement_params[:artiste_id])
-    @artistes = Artiste.all
+    #@artistes = Artiste.all
     
   end
   
@@ -70,7 +70,7 @@ class EngagementsController < ApplicationController
   def update
     respond_to do |format|
       if @engagement.update(engagement_params)
-        format.html { redirect_to action: 'index', notice: 'Engagement was successfully updated.' }
+        format.html { redirect_back fallback_location: index, notice: 'Engagement was successfully updated.' }
         format.json { render :show, status: :ok, location: @engagement }
       else
         format.html { render :edit }
@@ -97,6 +97,6 @@ class EngagementsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def engagement_params
-      params.require(:engagement).permit(:title, :status, :category, :begin, :end, :contract, :hotel, :voyages, :taxi, :sent, :rehearsals, :artiste_id, :programme_id, programmes_attributes: [:id, :title], events_attributes: [:id, :eventtype, :eventdate, :eventbegin, :eventend, :description1, :description2, :location, :_destroy], artistes_attributes: [:id, :name, :color])
+      params.require(:engagement).permit(:title, :status, :category, :begin, :end, :contract, :hotel, :voyages, :taxi, :sent, :rehearsals, :artiste_id, :programme_id, programmes_attributes: [:id, :title], events_attributes: [:id, :eventtype, :eventdate, :eventbegin, :eventend, :description1, :description2, :location, :_destroy], artistes_attributes: [:id, :name, :color], structures_attributes: [:id, :title, :address,:_destroy])
     end
 end
