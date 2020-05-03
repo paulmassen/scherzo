@@ -37,14 +37,22 @@
   </div>
   <div class="row">
     <h3>Organisation</h3>
-    <div id='tasks'>
+    <div id='structures'>
     <%= form.fields_for :structures do |structure| %>
       <%= render 'structure_fields', :f => structure %>
     <% end %>
    
   <div class='links'>
-<%= form.label :structure_ids %>
-<%= form.collection_select(:structure_ids, Structure.all, :id, :title, {}, {multiple: true} )%>
+<%#= form.label :structure_ids %>
+<%#= form.collection_select(:structure_ids, Structure.all, :id, :title, {}, {multiple: true} )%>
+<label for="engagement_structure_ids">Structure ids</label>
+<input name="engagement[structure_ids][]" type="hidden" value="" /><select multiple="multiple" name="engagement[structure_ids][]" id="engagement_structure_ids">
+  <% engagement.structures.each do |s| %>
+  <option selected="selected" style="display:none" value="<%= s.id %>"><%= s.title %></option>
+  <% end %>
+</select>
+
+
    <%= link_to_add_association 'add structure', form, :structures %>
   </div>
   </div>

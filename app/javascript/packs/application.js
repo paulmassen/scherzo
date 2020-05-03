@@ -58,11 +58,51 @@ $(document).on('turbolinks:load', function() {
 
   $('#engagement_structure_ids').selectize({
     create: true,
-    
-  });
-  $('#engagement_structure_ids').selectize().onItemAdd(function(){
-    console.log("element ajouté");
-  })
+    valueField: 'id',
+    labelField: 'title',
+    searchField: 'title',
+    options: [],
+    persist: false,
+    loadThrottle: 600,
+    allowEmptyOption: true,
+    load: function(query, callback) {
+        if (!query.length) return callback();
+        $.ajax({
+            url: '/structures.json',
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                name: query,
+                additionalDataIfRequired: 'Additional Data'
+            },
+            error: function() {
+                callback();
+            },
+            success: function(res) {
+                // you can apply any modification to data before passing it to selectize
+                callback(res);
+                console.log(res);
+                // res is json response from server
+                // it contains array of objects. Each object has two properties. In this case 'id' and 'Name'
+                // if array is inside some other property of res like 'response' or something. than use this
+                //callback(res.response);
+            }
+        });
+    }
+});  
+  
+$('#engagement_structure_ids')[0].selectize.on('item_add', function(value, $item){
+  console.log("élément ajouté");
+  //console.log(value);
+  var myitem = this.options[value];
+  console.log(this.options[value]);
+  //console.log(this.options[value.title]);
+  //console.log(this.options[value.address]);
+
+  console.log("This is the item");
+  $("#structures").append("\r\n <div class=\"col nested-fields s6 m6\">\r\n      <div class=\"card grey lighten-1\">\r\n        <div class=\"card-content white-text\">\r\n          <span class=\"card-title\">\r\n          <p>  <div class=\'nested-fields\'>\r\n    <div class=\"field\">\r\n      "+  myitem.title +"\r\n    \r\n    <\/div><\/span>\r\n    <div class=\"field\">\r\n    " + myitem.address + "\r\n    \r\n    <\/div>\r\n  <\/div><\/p>\r\n        <\/div>\r\n        <div class=\"card-action\">\r\n        <%= link_to_remove_association \'<i class=\"material-icons\">clear<\/i> Remove\'.html_safe, f %>\r\n    \r\n        <\/div>\r\n      <\/div>\r\n    <\/div>")
+  console.log($item);
+});
 
   //$('select:not(.selectize)').formSelect();
   $('.datepicker').datepicker();
