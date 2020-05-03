@@ -13,11 +13,12 @@ require("moment");
 require("fullcalendar");
 require("trix");
 require("@rails/actiontext");
+require("selectize");
 //require("jquery-ui");
 //require("materialize-css")
 // jquery
 import $ from 'jquery';
-
+import selectize from 'selectize';
 global.$ = $
 global.jQuery = $
 //require("materialize");
@@ -45,30 +46,35 @@ import 'materialize-css/dist/js/materialize.js';
   $('#calendar').html('');
 };*/
 
-  $(document).on('turbolinks:load', function(){
-    $('.composer-autocomplete').autocomplete({
-      data: {
-        "Mozart": 'Mozart',
-        "Beethoven": 'Beethoven',
-        "Haydn": 'Haydn'
-      },
-    });
-
-    
-
-    $('select').formSelect();
-    $('.datepicker').datepicker();
-    $('.sidenav').sidenav();
-    $('.collapsible').collapsible(
-      {
-        accordion: false
-      });
-/*    $(document).on('turbolinks:load', function(){
-  eventCalendar();  
-});*/
-
-
-/*$(document).on('turbolinks:before-cache', clearCalendar);*/
-      
+$(document).on('turbolinks:load', function() {
+  $('.composer-autocomplete').autocomplete({
+    data: {
+      "Mozart": 'Mozart',
+      "Beethoven": 'Beethoven',
+      "Haydn": 'Haydn'
+    },
   });
-  
+
+
+  $('#engagement_structure_ids').selectize({
+    create: true,
+    
+  });
+  $('#engagement_structure_ids').selectize().onItemAdd(function(){
+    console.log("element ajouté");
+  })
+
+  //$('select:not(.selectize)').formSelect();
+  $('.datepicker').datepicker();
+  $('.sidenav').sidenav();
+  $('.collapsible').collapsible({
+    accordion: false
+  });
+  /*    $(document).on('turbolinks:load', function(){
+    eventCalendar();  
+  });*/
+
+
+  /*$(document).on('turbolinks:before-cache', clearCalendar);*/
+
+});

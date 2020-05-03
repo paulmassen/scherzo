@@ -41,11 +41,12 @@
     <%= form.fields_for :structures do |structure| %>
       <%= render 'structure_fields', :f => structure %>
     <% end %>
-    <div class='links'>
-      <%= form.label :structures %>
-<%= collection_select(:structure, :structure_id, Structure.all, :id, :title, {}, )%>
-      <%= link_to_add_association 'add structure', form, :structures %>
-    </div>
+   
+  <div class='links'>
+<%= form.label :structure_ids %>
+<%= form.collection_select(:structure_ids, Structure.all, :id, :title, {}, {multiple: true} )%>
+   <%= link_to_add_association 'add structure', form, :structures %>
+  </div>
   </div>
 
           
