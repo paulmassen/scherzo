@@ -5,6 +5,7 @@
 
 require("@rails/ujs").start();
 require("turbolinks").start();
+//require("stimulus_reflex");
 require("@rails/activestorage").start();
 require("channels");
 require("jquery");
@@ -56,25 +57,23 @@ $(document).on('turbolinks:load', function() {
   });
 
 
-  $('#engagement_structure_ids').selectize({
+  $('#structureselect').selectize({
     create: true,
     valueField: 'id',
     labelField: 'title',
     searchField: 'title',
     options: [],
+    preload: true,
     persist: false,
     loadThrottle: 600,
     allowEmptyOption: true,
     load: function(query, callback) {
-        if (!query.length) return callback();
+        //if (!query.length) return callback();
         $.ajax({
             url: '/structures.json',
             type: 'GET',
             dataType: 'json',
-            data: {
-                name: query,
-                additionalDataIfRequired: 'Additional Data'
-            },
+           
             error: function() {
                 callback();
             },
@@ -91,7 +90,7 @@ $(document).on('turbolinks:load', function() {
     }
 });  
   
-$('#engagement_structure_ids')[0].selectize.on('item_add', function(value, $item){
+/*$('#engagement_structure_ids')[0].selectize.on('item_add', function(value, $item){
   console.log("élément ajouté");
   //console.log(value);
   var myitem = this.options[value];
@@ -102,7 +101,7 @@ $('#engagement_structure_ids')[0].selectize.on('item_add', function(value, $item
   console.log("This is the item");
   $("#structures").append("\r\n <div class=\"col nested-fields s6 m6\">\r\n      <div class=\"card grey lighten-1\">\r\n        <div class=\"card-content white-text\">\r\n          <span class=\"card-title\">\r\n          <p>  <div class=\'nested-fields\'>\r\n    <div class=\"field\">\r\n      "+  myitem.title +"\r\n    \r\n    <\/div><\/span>\r\n    <div class=\"field\">\r\n    " + myitem.address + "\r\n    \r\n    <\/div>\r\n  <\/div><\/p>\r\n        <\/div>\r\n        <div class=\"card-action\">\r\n        <%= link_to_remove_association \'<i class=\"material-icons\">clear<\/i> Remove\'.html_safe, f %>\r\n    \r\n        <\/div>\r\n      <\/div>\r\n    <\/div>")
   console.log($item);
-});
+});*/
 
   //$('select:not(.selectize)').formSelect();
   $('.datepicker').datepicker();
@@ -118,3 +117,5 @@ $('#engagement_structure_ids')[0].selectize.on('item_add', function(value, $item
   /*$(document).on('turbolinks:before-cache', clearCalendar);*/
 
 });
+
+import "controllers"
