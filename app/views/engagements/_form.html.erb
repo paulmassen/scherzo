@@ -35,49 +35,44 @@
     <%= form.label :end %>
     <%= form.text_field :end, class: "datepicker" %>
   </div>
-  <div class="row">
+  <div class="row" data-controller="engagement">
     <h3>Organisation</h3>
+      <div class='links'>
+<%= form.label :structure_ids %>
+<select type="select-one" id="structureselect" placeholder="ajouter une structure à cet engagement" data-reflex="item_add@document->EngagementReflex#update_structure" ></select>
+
+   <%# link_to_add_association 'add structure', form, :structures %>
+   <%#  %>
+  </div>
     <div id='structures'>
     <%= form.fields_for :structures do |structure| %>
       <%= render 'structure_fields', :f => structure %>
     <% end %>
    
-  <div class='links'>
-<%#= form.label :structure_ids %>
-<%#= form.collection_select(:structure_ids, Structure.all, :id, :title, {}, {multiple: true} )%>
-<label for="engagement_structure_ids">Structure ids</label>
-<input name="engagement[structure_ids][]" type="hidden" value="" /><select multiple="multiple" name="engagement[structure_ids][]" id="engagement_structure_ids">
-  <% engagement.structures.each do |s| %>
-  <option selected="selected" style="display:none" value="<%= s.id %>"><%= s.title %></option>
-  <% end %>
-</select>
 
-
-   <%= link_to_add_association 'add structure', form, :structures %>
-  </div>
   </div>
 
           
 
   </div>
-  <div class="row">
+  <div class="row" id="checkboxsection">
     <h3>To-do Liste</h3>
-<div class="col s6">
+<div class="col s6" >
   <div class="field">
     <label>
-    <%= form.check_box :contract %>
+    <%= form.check_box :contract , data: { reflex: "click->EngagementReflex#toggle_contract", "reflex-root": "#checkboxsection", id: engagement.id} %>
     <span>Contract</span>
     </label>
   </div>
   <div class="field">
 <label>
-    <%= form.check_box :voyages %>
+    <%= form.check_box :voyages, data: { reflex: "click->EngagementReflex#toggle_voyages","reflex-root": "#checkboxsection", id: engagement.id} %>
     <span>Voyages</span>
     </label>
   </div>
   <div class="field">
 <label>
-    <%= form.check_box :hotel %>
+    <%= form.check_box :hotel, data: { reflex: "click->EngagementReflex#toggle_hotel","reflex-root": "#checkboxsection", id: engagement.id} %>
     <span>Hotel</span>
     </label>
   </div>
@@ -85,20 +80,20 @@
 <div class="col s6">
   <div class="field">
        <label>
-    <%= form.check_box(:taxi) %>
+    <%= form.check_box :taxi, data: { reflex: "click->EngagementReflex#toggle_taxi","reflex-root": "#checkboxsection", id: engagement.id} %>
     <span>Taxi </span></label>
     
   </div>
 
   <div class="field">
      <label>
-    <%= form.check_box(:sent) %>
+    <%= form.check_box :sent, data: { reflex: "click->EngagementReflex#toggle_sent","reflex-root": "#checkboxsection", id: engagement.id} %>
 <span>Sent </span>
 </label>
   </div>
   <div class="field">
    <label>
-    <%= form.check_box :rehearsals %>
+    <%= form.check_box :rehearsals, data: { reflex: "click->EngagementReflex#toggle_rehearsals","reflex-root": "#checkboxsection", id: engagement.id} %>
      <span>Rehearsals</span>
      </label>
   </div>
