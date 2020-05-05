@@ -1,9 +1,30 @@
 import ApplicationController from './application_controller'
-
+import StimulusReflex from 'stimulus_reflex';
 /* This is the custom StimulusReflex controller for EngagementReflex.
  * Learn more at: https://docs.stimulusreflex.com
  */
+import { Controller } from "stimulus";
 export default class extends ApplicationController {
+    connect(){
+        console.log("Hello, Stimulus!");
+        StimulusReflex.register(this);
+        this.element[this.identifier] = this
+    
+        console.log(this);
+    }
+    
+   /* addToList(event){
+        console.log("add to list triggered");
+        event.preventDefault();
+        //super()
+        //console.log(this.element);
+        //this.stimulate("EngagementReflex#update_structure");
+        
+    }
+    increment(event) {
+        event.preventDefault()
+        this.stimulate('EngagementReflex#increment', 1)
+    }*/
   /* Reflex specific lifecycle methods.
    * Use methods similar to this example to handle lifecycle concerns for a specific Reflex method.
    * Using the lifecycle is optional, so feel free to delete these stubs if you don't need them.
@@ -32,7 +53,7 @@ export default class extends ApplicationController {
 
    updateError(element, reflex, error) {
      console.error('updateError', error);
-    element.innerText = 'Update Failed!'
+    //element.innerText = 'Update Failed!'
    }
 
 }

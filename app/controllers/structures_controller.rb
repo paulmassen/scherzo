@@ -60,7 +60,9 @@ class StructuresController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  def search
+      render json: Structure.all.typeahead_search(params[:title])
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_structure
@@ -71,4 +73,5 @@ class StructuresController < ApplicationController
     def structure_params
       params.require(:structure).permit(:title, :address)
     end
+
 end

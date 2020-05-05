@@ -15,6 +15,7 @@
     <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
+
     <div class="input-field">
     <%= form.collection_select :artiste_id, Artiste.all, :id, :name, { :class => "dropdown" } %>
   </div>
@@ -35,12 +36,20 @@
     <%= form.label :end %>
     <%= form.text_field :end, class: "datepicker" %>
   </div>
-  <div class="row" data-controller="engagement">
+  <div class="row" id="structures">
     <h3>Organisation</h3>
       <div class='links'>
 <%= form.label :structure_ids %>
-<select type="select-one" id="structureselect" placeholder="ajouter une structure à cet engagement" data-reflex="item_add@document->EngagementReflex#update_structure" ></select>
-
+<div class="input-field">
+<div class="col s6" data-controller="choices" data-search-path="/structures.json?title=" data-remove-item-button="true" data-search-result-limit="100" data-no-choices-text="Start typing to search...">
+  <datalist data-choices-target="options"></datalist>
+  <label for="concept_chef_id">Structure:</label>
+  <%= form.collection_select(:structure_ids, Structure.all, :id, :title, {inclue_blank: true}, {class: "form-control", data: {"target": "choices.select"} } )%>
+  <!--data-choices-target="select" to data-target="choices#select"-->
+  <%# form.collection_select :structure_ids, @structures, :id, :title, {include_blank: true}, {class: "form-control", data: {"choices-target": "select"}} %>
+</div>
+ </div>
+</div>
    <%# link_to_add_association 'add structure', form, :structures %>
    <%#  %>
   </div>
@@ -48,11 +57,8 @@
     <%= form.fields_for :structures do |structure| %>
       <%= render 'structure_fields', :f => structure %>
     <% end %>
-   
-
+  
   </div>
-
-          
 
   </div>
   <div class="row" id="checkboxsection">

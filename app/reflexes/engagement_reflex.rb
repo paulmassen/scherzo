@@ -46,4 +46,8 @@ class EngagementReflex < ApplicationReflex
   end
   def update_structure
   end
+
+  def increment(step = 1)
+    session[:count] = session[:count].to_i + step
+  end
 end

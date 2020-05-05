@@ -15,13 +15,31 @@ require("fullcalendar");
 require("trix");
 require("@rails/actiontext");
 require("selectize");
+//require("choices.js");
 //require("jquery-ui");
 //require("materialize-css")
 // jquery
+//import Choices from 'choices.js';
+import { Controller } from 'stimulus'
+import StimulusReflex from 'stimulus_reflex'
 import $ from 'jquery';
 import selectize from 'selectize';
+
 global.$ = $
 global.jQuery = $
+
+/*
+var choicesAjax = new Choices('#demo-3').ajax((callback) => {
+    fetch('/structures.json')
+        .then((response) => {
+            response.json().then(function(data) {  
+                callback(data, 'id', 'title');
+            });
+        })
+        .catch((error) => {
+            callback();
+        });
+})*/
 //require("materialize");
 //require("material-icons");
 
@@ -57,7 +75,7 @@ $(document).on('turbolinks:load', function() {
   });
 
 
-  $('#structureselect').selectize({
+/*  $('#structureselect').selectize({
     create: true,
     valueField: 'id',
     labelField: 'title',
@@ -67,6 +85,7 @@ $(document).on('turbolinks:load', function() {
     persist: false,
     loadThrottle: 600,
     allowEmptyOption: true,
+
     load: function(query, callback) {
         //if (!query.length) return callback();
         $.ajax({
@@ -81,6 +100,7 @@ $(document).on('turbolinks:load', function() {
                 // you can apply any modification to data before passing it to selectize
                 callback(res);
                 console.log(res);
+                
                 // res is json response from server
                 // it contains array of objects. Each object has two properties. In this case 'id' and 'Name'
                 // if array is inside some other property of res like 'response' or something. than use this
@@ -88,21 +108,27 @@ $(document).on('turbolinks:load', function() {
             }
         });
     }
-});  
-  
-/*$('#engagement_structure_ids')[0].selectize.on('item_add', function(value, $item){
-  console.log("élément ajouté");
+});  */
+
+
+//$('#myselectfield').on('change', function(){
+  //StimulusReflex.register(this);
+ //this.stimulate("EngagementReflex#update_structure");
+ //console.log("changed")
+//});
+//  console.log("élément ajouté");
+  //var self = this;
+
+  //StimulusReflex.register(this);
+  //
   //console.log(value);
-  var myitem = this.options[value];
-  console.log(this.options[value]);
-  //console.log(this.options[value.title]);
-  //console.log(this.options[value.address]);
+  
+  //console.log(this.options[value]);
 
-  console.log("This is the item");
-  $("#structures").append("\r\n <div class=\"col nested-fields s6 m6\">\r\n      <div class=\"card grey lighten-1\">\r\n        <div class=\"card-content white-text\">\r\n          <span class=\"card-title\">\r\n          <p>  <div class=\'nested-fields\'>\r\n    <div class=\"field\">\r\n      "+  myitem.title +"\r\n    \r\n    <\/div><\/span>\r\n    <div class=\"field\">\r\n    " + myitem.address + "\r\n    \r\n    <\/div>\r\n  <\/div><\/p>\r\n        <\/div>\r\n        <div class=\"card-action\">\r\n        <%= link_to_remove_association \'<i class=\"material-icons\">clear<\/i> Remove\'.html_safe, f %>\r\n    \r\n        <\/div>\r\n      <\/div>\r\n    <\/div>")
-  console.log($item);
-});*/
-
+//});
+//$('#structureselect').on( "change", function(){
+//  console.log("changed select")
+//  } );
   //$('select:not(.selectize)').formSelect();
   $('.datepicker').datepicker();
   $('.sidenav').sidenav();
