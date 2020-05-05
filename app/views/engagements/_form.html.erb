@@ -101,10 +101,19 @@
 </div>
 </div>
 
-
+<h3>Artistique</h3>
   <div class="input-field">
     <%= form.collection_select :programme_id, Programme.all, :id, :title, { :class => "dropdown" } %>
   </div>
+  
+  <div class="input-field">
+    <%= form.fields_for :partners do |partner| %>
+      <%= render "partner_fields", :f => partner %>
+    <% end %>
+    <%= link_to_add_association '<div class="btn">Add partner</div>'.html_safe, form, :partners, { 'data-association-insertion-method': "after"} %>
+  </div>
+  
+  
   <h3>Planning</h3>
   <div>
     <table>

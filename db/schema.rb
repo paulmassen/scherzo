@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_05_140232) do
+ActiveRecord::Schema.define(version: 2020_05_05_142832) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -115,6 +115,15 @@ ActiveRecord::Schema.define(version: 2020_05_05_140232) do
     t.index ["engagement_id"], name: "index_events_on_engagement_id"
   end
 
+  create_table "partners", force: :cascade do |t|
+    t.string "name"
+    t.string "instrument"
+    t.integer "engagement_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["engagement_id"], name: "index_partners_on_engagement_id"
+  end
+
   create_table "programmes", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
@@ -169,6 +178,7 @@ ActiveRecord::Schema.define(version: 2020_05_05_140232) do
   add_foreign_key "engagements", "artistes"
   add_foreign_key "engagements", "programmes"
   add_foreign_key "events", "engagements"
+  add_foreign_key "partners", "engagements"
   add_foreign_key "responsabilities", "contacts"
   add_foreign_key "responsabilities", "structures"
   add_foreign_key "tasks", "projects"
