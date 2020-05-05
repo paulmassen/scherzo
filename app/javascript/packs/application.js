@@ -15,7 +15,7 @@ require("fullcalendar");
 require("trix");
 require("@rails/actiontext");
 require("selectize");
-//require("choices.js");
+require("choices.js");
 //require("jquery-ui");
 //require("materialize-css")
 // jquery
@@ -24,22 +24,17 @@ import { Controller } from 'stimulus'
 import StimulusReflex from 'stimulus_reflex'
 import $ from 'jquery';
 import selectize from 'selectize';
-
+import * as Choices from 'choices.js'
 global.$ = $
 global.jQuery = $
 
-/*
-var choicesAjax = new Choices('#demo-3').ajax((callback) => {
-    fetch('/structures.json')
-        .then((response) => {
-            response.json().then(function(data) {  
-                callback(data, 'id', 'title');
-            });
-        })
-        .catch((error) => {
-            callback();
-        });
-})*/
+ $(document).on('turbolinks:load', function() {
+ 
+
+
+  });  
+
+
 //require("materialize");
 //require("material-icons");
 
@@ -66,6 +61,25 @@ import 'materialize-css/dist/js/materialize.js';
 };*/
 
 $(document).on('turbolinks:load', function() {
+  const Choices = require('choices.js');
+  var singleFetch = new Choices('#mydemo', {
+          searchPlaceholderValue: 'Search a structure',
+          removeItemButton: true,
+        })
+          .setChoices(function() {
+            return fetch(
+              '/structures.json'
+            )
+              .then(function(response) {
+                return response.json();
+              })
+              .then(function(data) {
+                return data.map(function(release) {
+                  return { label: release.title, value: release.id };
+                });
+              });
+          });
+          
   $('.composer-autocomplete').autocomplete({
     data: {
       "Mozart": 'Mozart',
@@ -74,62 +88,12 @@ $(document).on('turbolinks:load', function() {
     },
   });
 
-
-/*  $('#structureselect').selectize({
-    create: true,
-    valueField: 'id',
-    labelField: 'title',
-    searchField: 'title',
-    options: [],
-    preload: true,
-    persist: false,
-    loadThrottle: 600,
-    allowEmptyOption: true,
-
-    load: function(query, callback) {
-        //if (!query.length) return callback();
-        $.ajax({
-            url: '/structures.json',
-            type: 'GET',
-            dataType: 'json',
-           
-            error: function() {
-                callback();
-            },
-            success: function(res) {
-                // you can apply any modification to data before passing it to selectize
-                callback(res);
-                console.log(res);
-                
-                // res is json response from server
-                // it contains array of objects. Each object has two properties. In this case 'id' and 'Name'
-                // if array is inside some other property of res like 'response' or something. than use this
-                //callback(res.response);
-            }
-        });
-    }
-});  */
+$('#remove_structure').click(function(event){
+  event.preventDefault();
+});
 
 
-//$('#myselectfield').on('change', function(){
-  //StimulusReflex.register(this);
- //this.stimulate("EngagementReflex#update_structure");
- //console.log("changed")
-//});
-//  console.log("élément ajouté");
-  //var self = this;
-
-  //StimulusReflex.register(this);
-  //
-  //console.log(value);
-  
-  //console.log(this.options[value]);
-
-//});
-//$('#structureselect').on( "change", function(){
-//  console.log("changed select")
-//  } );
-  //$('select:not(.selectize)').formSelect();
+  $('select:not(#mydemo)').formSelect();
   $('.datepicker').datepicker();
   $('.sidenav').sidenav();
   $('.collapsible').collapsible({

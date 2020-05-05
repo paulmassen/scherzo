@@ -3,16 +3,17 @@ import StimulusReflex from 'stimulus_reflex';
 /* This is the custom StimulusReflex controller for EngagementReflex.
  * Learn more at: https://docs.stimulusreflex.com
  */
+//import * as Choices from 'choices.js'
 import { Controller } from "stimulus";
 export default class extends ApplicationController {
     connect(){
         console.log("Hello, Stimulus!");
-        StimulusReflex.register(this);
-        this.element[this.identifier] = this
+        //StimulusReflex.register(this);
+        //this.element[this.identifier] = this
     
-        console.log(this);
+        //console.log(this);
     }
-    
+
    /* addToList(event){
         console.log("add to list triggered");
         event.preventDefault();

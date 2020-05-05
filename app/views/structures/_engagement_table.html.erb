@@ -1,0 +1,60 @@
+ <table>
+<thead>
+               <tr>
+                  <th>Titre</th>
+                  <th>Début</th>
+                  <th>Fin</th>
+                  <th>Contrat</th>
+                  <th>Voyages</th>
+                  <th>Hotel</th>
+                  <th>Transfert</th>
+                  <th>Envoyé</th>
+                  <th>Répétitions</th>
+                  <th colspan="3"></th>
+               </tr>
+            </thead>
+             <tbody>
+               <% concerts.each do |engagement| %>
+               
+               <tr>
+                  <td><%= engagement.title %></td>
+                  <td><%= engagement.begin %></td>
+                  <td><%= engagement.end %></td>
+                  <% if engagement.contract? %>
+                  <td><i class="material-icons">check</i></td>
+                  <% else %>
+                  <td><i class="material-icons">clear</i></td>
+                  <% end %>
+                  <% if engagement.voyages? %>
+                  <td><i class="material-icons">check</i></td>
+                  <% else %>
+                  <td><i class="material-icons">clear</i></td>
+                  <% end %>
+                  <% if engagement.hotel? %>
+                  <td><i class="material-icons">check</i></td>
+                  <% else %>
+                  <td><i class="material-icons">clear</i></td>
+                  <% end %>
+                  <% if engagement.taxi? %>
+                  <td><i class="material-icons">check</i></td>
+                  <% else %>
+                  <td><i class="material-icons">clear</i></td>
+                  <% end %>
+                  <% if engagement.sent? %>
+                  <td><i class="material-icons">check</i></td>
+                  <% else %>
+                  <td><i class="material-icons">clear</i></td>
+                  <% end %>
+                  <% if engagement.rehearsals? %>
+                  <td><i class="material-icons">check</i></td>
+                  <% else %>
+                  <td><i class="material-icons">clear</i></td>
+                  <% end %>
+                  <!--<td><#%= link_to 'Show', engagement       %></td>-->
+                  <td><%= link_to '<i class="material-icons">edit</i>'.html_safe, edit_engagement_path(engagement) %></td>
+                  <td><%= link_to '<i class="material-icons">delete</i>'.html_safe, engagement, method: :delete, data: { confirm: "Are you sure?" } %></td>
+               </tr>
+               <% # end %>
+               <% end %>
+            </tbody>
+         </table>

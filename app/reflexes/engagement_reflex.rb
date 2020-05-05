@@ -45,9 +45,14 @@ class EngagementReflex < ApplicationReflex
     engagement.toggle!(:rehearsals)
   end
   def update_structure
+    engagement = Engagement.find(element.dataset[:id])
+    structureid = element[:value].start_with?("Select a") ? nil : element[:value]
+    mystructure = Structure.find(structureid)
+    engagement.structures << mystructure
   end
-
-  def increment(step = 1)
-    session[:count] = session[:count].to_i + step
+  def remove_structure
+    engagement = Engagement.find(element.dataset[:engagementid])
+    structureid = element.dataset[:structureid]
+    engagement.structures.delete(structureid)
   end
 end

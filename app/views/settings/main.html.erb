@@ -24,29 +24,7 @@
     </label>
   </div>
 
- <select id="mydemo" type="select-one"></select>
- <script>
-var singleFetch = new Choices('#mydemo', {
-          searchPlaceholderValue: 'Search a structure',
-        })
-          .setChoices(function() {
-            return fetch(
-              '/structures.json'
-            )
-              .then(function(response) {
-                return response.json();
-              })
-              .then(function(data) {
-                return data.map(function(release) {
-                  return { label: release.title, value: release.id };
-                });
-              });
-          })
-          .then(function(instance) {
-            instance.setChoiceByValue('Fake Tales Of San Francisco');
-          });
 
- </script>
  
 </div>
 </div>

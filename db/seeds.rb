@@ -100,3 +100,43 @@ end
 
 p "Created 60 engagements"
 
+Structure.create!(
+    title: "Wiener Konzerthaus",
+    address: "Konzertplatz"
+)
+Structure.create!(
+    title: "Orchestre des Champs-Elysées",
+    address: ""
+)
+Structure.create!(
+    title: "Columbia Artists Management",
+    address: ""
+)
+Structure.create!(
+    title: "Philharmonie de Paris",
+    address: "Porte de Pantin"
+)
+Structure.create!(
+    title: "Festival de piano de la roque d'anthéron",
+    address: ""
+)
+Structure.create!(
+    title: "CREA Nantes",
+    address: ""
+)
+Structure.create!(
+    title: "Berlin Staatsoper",
+    address: ""
+)
+Structure.create!(
+    title: "Théâtre des Champs Elysées",
+    address: ""
+)
+Structure.create!(
+    title: "Wiener Philharmoniker",
+    address: "Vienne"
+)
+Structure.create!(
+    title: "Folle Journée de Nantes",
+    address: "Nantes"
+)
