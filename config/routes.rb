@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :contacts
   resources :structures
   #get 'ficheinfo' => 'artistes#ficheinfo'
 #  get '/artistes/:id/ficheinfo', to: 'artistes#ficheinfo', as: 'artiste'

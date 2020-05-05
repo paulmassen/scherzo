@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fonction: MyString
+  contact: one
+  structure: one
+
+two:
+  fonction: MyString
+  contact: two
+  structure: two

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_01_141224) do
+ActiveRecord::Schema.define(version: 2020_05_05_140232) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -67,6 +67,13 @@ ActiveRecord::Schema.define(version: 2020_05_01_141224) do
     t.text "address"
   end
 
+  create_table "contacts", force: :cascade do |t|
+    t.string "name"
+    t.string "surname"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "engagements", force: :cascade do |t|
     t.string "title"
     t.date "begin"
@@ -121,6 +128,16 @@ ActiveRecord::Schema.define(version: 2020_05_01_141224) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "responsabilities", force: :cascade do |t|
+    t.string "fonction"
+    t.integer "contact_id", null: false
+    t.integer "structure_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["contact_id"], name: "index_responsabilities_on_contact_id"
+    t.index ["structure_id"], name: "index_responsabilities_on_structure_id"
+  end
+
   create_table "structures", force: :cascade do |t|
     t.string "title"
     t.text "address"
@@ -152,6 +169,8 @@ ActiveRecord::Schema.define(version: 2020_05_01_141224) do
   add_foreign_key "engagements", "artistes"
   add_foreign_key "engagements", "programmes"
   add_foreign_key "events", "engagements"
+  add_foreign_key "responsabilities", "contacts"
+  add_foreign_key "responsabilities", "structures"
   add_foreign_key "tasks", "projects"
   add_foreign_key "works", "programmes"
 end

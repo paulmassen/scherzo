@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @contact.name %>
+</p>
+
+<p>
+  <strong>Surname:</strong>
+  <%= @contact.surname %>
+</p>
+
+<h3>Fonctions </h3>
+<div class="row">
+<% @contact.responsabilities.each do |s| %>
+<div class="col d6">
+<%= s.fonction %>
+<%= Structure.find_by(id: s.structure_id).title %>
+<%= Structure.find_by(id: s.structure_id).address %>
+</div>
+
+<% end %>
+</div>
+<%= link_to 'Edit', edit_contact_path(@contact) %> |
+<%= link_to 'Back', contacts_path %>
