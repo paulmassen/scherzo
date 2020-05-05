@@ -61,6 +61,9 @@ import 'materialize-css/dist/js/materialize.js';
 };*/
 
 $(document).on('turbolinks:load', function() {
+    $('.collapsible').collapsible({
+    accordion: false
+  });
   const Choices = require('choices.js');
   var singleFetch = new Choices('#mydemo', {
           searchPlaceholderValue: 'Search a structure',
@@ -96,9 +99,7 @@ $('#remove_structure').click(function(event){
   $('select:not(#mydemo)').formSelect();
   $('.datepicker').datepicker();
   $('.sidenav').sidenav();
-  $('.collapsible').collapsible({
-    accordion: false
-  });
+
   /*    $(document).on('turbolinks:load', function(){
     eventCalendar();  
   });*/

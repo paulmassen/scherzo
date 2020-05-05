@@ -8,9 +8,40 @@
   <strong>Address:</strong>
   <%= @structure.address %>
 </p>
-<h3>Liste des engagements associés</h3>
+<h3>Contacts</h3>
+<hr>
 
-<%= render partial: "engagement_table", locals: {concerts: @structure.engagements} %>
+<h3>Engagements</h3>
+<ul class="collapsible">
+   <li>
+      <div class="collapsible-header"><i class="material-icons">next_week</i><%= @futursengagements.size %> Futurs Engagements</div>
+      <div class="collapsible-body">
+         <%= render partial: "engagement_table", locals: {concerts: @futursengagements} %>
+        
+         
+           
+      </div>
+   </li>
+   <li>
+      <div class="collapsible-header"><i class="material-icons">history</i><%= @pastengagements.size %> Engagements Passés</div>
+      <div class="collapsible-body">
+         <%= render partial: "engagement_table", locals: {concerts: @pastengagements} %>
+        
+      </div>
+   </li>
+   <li>
+      <div class="collapsible-header"><i class="material-icons">insert_invitation</i><%= @optionengagements.size %> Options à confirmer</div>
+      <div class="collapsible-body">
+        <%= render partial: "engagement_table", locals: {concerts: @optionengagements} %>
+      </div>
+   </li>
+   <li>
+      <div class="collapsible-header"><i class="material-icons">hourglass_empty</i><%= @pendinginvitations.size %> Invitations en attente </div>
+      <div class="collapsible-body">
+        <%= render partial: "engagement_table", locals: {concerts: @pendinginvitations} %>
+      </div>
+   </li>
+</ul>
 
 
 <%= link_to 'Edit', edit_structure_path(@structure) %> |

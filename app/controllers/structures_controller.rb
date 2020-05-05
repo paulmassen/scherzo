@@ -10,6 +10,10 @@ class StructuresController < ApplicationController
   # GET /structures/1
   # GET /structures/1.json
   def show
+    @futursengagements  = @structure.engagements.all.where("begin >= ?", Date.today).where("status == ?", "confirmed")
+    @pastengagements    = @structure.engagements.all.where("end <= ?", Date.today).where("status == ?", "confirmed")
+    @pendinginvitations = @structure.engagements.all.where("status == ?", "invitation")
+    @optionengagements  = @structure.engagements.all.where("status == ?", "option")
   end
 
   # GET /structures/new
