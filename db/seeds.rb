@@ -97,6 +97,15 @@ Engagement.create!(
 
 )
 end
+
+300.times do
+Contact.create!(
+    name: Faker::Name.last_name,
+    surname: Faker::Name.first_name 
+    
+  )
+end
+
 messtructures = [ 
 "21st Century Concerts Luzern",
 "21th Century Concerts",

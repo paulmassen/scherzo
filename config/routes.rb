@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  resources :contacts
+  
   get '/structures/search' => 'structures#search'
+  get '/contacts/search' => 'contacts#search'
   resources :structures 
+  resources :contacts
   #get 'ficheinfo' => 'artistes#ficheinfo'
 #  get '/artistes/:id/ficheinfo', to: 'artistes#ficheinfo', as: 'artiste'
   get  'artistes(/:id)/printfiche', to: 'artistes#printfiche'

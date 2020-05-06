@@ -6,7 +6,16 @@ class ContactsController < ApplicationController
   def index
     @contacts = Contact.all
   end
-
+  
+  def search
+    if params[:title]
+      @contacts = Contact.search_by_name(params[:title])
+    else
+      @contacts = Contact.all
+    end
+    render '/contacts/search.json'
+    #render json: @structures
+  end
   # GET /contacts/1
   # GET /contacts/1.json
   def show
