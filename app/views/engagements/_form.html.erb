@@ -41,18 +41,26 @@
       <div class='links'>
 <p>Ajouter une Structure à cet engagement</p>
 <div class="input-field">
- <select id="mydemo" class="browser-default" data-reflex-root="#structures" type="select-one" data-reflex="change->EngagementReflex#update_structure" data-id="<%= engagement.id %>"></select>
+<!-- <select id="mydemo" class="browser-default" data-reflex-root="#structures" type="select-one" data-reflex="change->EngagementReflex#update_structure" data-id="<%# engagement.id %>"></select>-->
+<div data-controller="choices" data-search-path="/structures.json?name=" data-reflex-root="#structures" data-remove-item-button="true" data-search-result-limit="100" data-no-choices-text="Start typing to search...">
+  
+  <select class="form-control" data-target="choices.select"  type="select-one" id="mydemo" data-reflex="change->EngagementReflex#update_structure" data-id="<%=engagement.id%>"></select>
+  <datalist data-target="choices.options"></datalist>
 
+</div>
+
+</div>
  </div>
 </div>
    <%# link_to_add_association 'add structure', form, :structures %>
    <%#  %>
   </div>
     <div id='structures'>
+      <div class="row">
     <%= form.fields_for :structures do |structure| %>
       <%= render 'structure_fields', :f => structure , engagementid: @engagement.id %>
     <% end %>
-  
+  </div>
   </div>
 
   </div>

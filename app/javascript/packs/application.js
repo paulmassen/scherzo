@@ -59,7 +59,7 @@ import 'materialize-css/dist/js/materialize.js';
   $('#calendar').fullCalendar('delete'); 
   $('#calendar').html('');
 };*/
-$(document).ready(function(){
+/*$(document).ready(function(){
     const Choices = require('choices.js');
   var singleFetch = new Choices('#mydemo', {
           searchPlaceholderValue: 'Search a structure',
@@ -79,13 +79,13 @@ $(document).ready(function(){
               });
           });
           
-})
+})*/
 
 $(document).on('turbolinks:load', function() {
     $('.collapsible').collapsible({
     accordion: false
   });
-  const Choices = require('choices.js');
+ /* const Choices = require('choices.js');
   var singleFetch = new Choices('#mydemo', {
           searchPlaceholderValue: 'Search a structure',
           removeItemButton: true,
@@ -102,7 +102,7 @@ $(document).on('turbolinks:load', function() {
                   return { label: release.title, value: release.id };
                 });
               });
-          });
+          });*/
           
   $('.composer-autocomplete').autocomplete({
     data: {
