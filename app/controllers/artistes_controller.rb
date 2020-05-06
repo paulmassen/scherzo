@@ -14,10 +14,10 @@ class ArtistesController < ApplicationController
   # GET /artistes/1.json
   def show
     @engagements = Engagement.all
-    @futursengagements  = Engagement.all.where("artiste_id == ?", params[:id]).where("begin >= ?", Date.today).where("status == ?", "confirmed")
-    @pastengagements    = Engagement.all.where("artiste_id == ?", params[:id]).where("end <= ?", Date.today).where("status == ?", "confirmed")
-    @pendinginvitations = Engagement.all.where("artiste_id == ?", params[:id]).where("status == ?", "invitation")
-    @optionengagements  = Engagement.all.where("artiste_id == ?", params[:id]).where("status == ?", "option")
+    @futursengagements  = Engagement.all.where("artiste_id = ?", params[:id]).where("startengagement >= ?", Date.today).where("status = ?", "confirmed")
+    @pastengagements    = Engagement.all.where("artiste_id = ?", params[:id]).where("endengagement <= ?", Date.today).where("status = ?", "confirmed")
+    @pendinginvitations = Engagement.all.where("artiste_id = ?", params[:id]).where("status = ?", "invitation")
+    @optionengagements  = Engagement.all.where("artiste_id = ?", params[:id]).where("status = ?", "option")
     #@futursengagements = Engagement.where(:begin.to_date.future?)
   end
   

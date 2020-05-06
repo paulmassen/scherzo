@@ -40,7 +40,7 @@
       </div>
    </li>
    <li>
-      <div class="collapsible-header"><i class="material-icons">history</i><%= @pastengagements.size %> Engagements Passés</div>
+      <div class="collapsible-header"><i class="material-icons">history</i><% @pastengagements.size %> Engagements Passés</div>
       <div class="collapsible-body">
          <%= render partial: "engagement_table", locals: {concerts: @pastengagements} %>
         

@@ -12,11 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2020_05_05_142832) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
     t.string "record_type", null: false
-    t.integer "record_id", null: false
+    t.bigint "record_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
@@ -25,8 +28,8 @@ ActiveRecord::Schema.define(version: 2020_05_05_142832) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -76,8 +79,8 @@ ActiveRecord::Schema.define(version: 2020_05_05_142832) do
 
   create_table "engagements", force: :cascade do |t|
     t.string "title"
-    t.date "begin"
-    t.date "end"
+    t.date "startengagement"
+    t.date "endengagement"
     t.boolean "contract"
     t.boolean "hotel"
     t.boolean "taxi"
@@ -85,9 +88,9 @@ ActiveRecord::Schema.define(version: 2020_05_05_142832) do
     t.boolean "rehearsals"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "programme_id"
+    t.bigint "programme_id"
     t.boolean "voyages"
-    t.integer "artiste_id"
+    t.bigint "artiste_id"
     t.string "status"
     t.string "category"
     t.index ["artiste_id"], name: "index_engagements_on_artiste_id"
@@ -111,14 +114,14 @@ ActiveRecord::Schema.define(version: 2020_05_05_142832) do
     t.text "location"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "engagement_id"
+    t.bigint "engagement_id"
     t.index ["engagement_id"], name: "index_events_on_engagement_id"
   end
 
   create_table "partners", force: :cascade do |t|
     t.string "name"
     t.string "instrument"
-    t.integer "engagement_id", null: false
+    t.bigint "engagement_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["engagement_id"], name: "index_partners_on_engagement_id"
@@ -139,8 +142,8 @@ ActiveRecord::Schema.define(version: 2020_05_05_142832) do
 
   create_table "responsabilities", force: :cascade do |t|
     t.string "fonction"
-    t.integer "contact_id", null: false
-    t.integer "structure_id", null: false
+    t.bigint "contact_id", null: false
+    t.bigint "structure_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["contact_id"], name: "index_responsabilities_on_contact_id"
@@ -157,7 +160,7 @@ ActiveRecord::Schema.define(version: 2020_05_05_142832) do
   create_table "tasks", force: :cascade do |t|
     t.string "description"
     t.boolean "done"
-    t.integer "project_id", null: false
+    t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_tasks_on_project_id"
@@ -170,7 +173,7 @@ ActiveRecord::Schema.define(version: 2020_05_05_142832) do
     t.integer "duration"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "programme_id"
+    t.bigint "programme_id"
     t.index ["programme_id"], name: "index_works_on_programme_id"
   end
 

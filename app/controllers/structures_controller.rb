@@ -4,7 +4,7 @@ class StructuresController < ApplicationController
   # GET /structures
   # GET /structures.json
   def index
-    @structures = Structure.all
+    @pagy, @structures = pagy(Structure.all)
     
   end
 
@@ -12,10 +12,10 @@ class StructuresController < ApplicationController
   # GET /structures/1.json
   def show
     #@contacts = Contact.all.where()
-    @futursengagements  = @structure.engagements.all.where("begin >= ?", Date.today).where("status == ?", "confirmed")
-    @pastengagements    = @structure.engagements.all.where("end <= ?", Date.today).where("status == ?", "confirmed")
-    @pendinginvitations = @structure.engagements.all.where("status == ?", "invitation")
-    @optionengagements  = @structure.engagements.all.where("status == ?", "option")
+    @futursengagements  = @structure.engagements.all.where("startengagement > ?", Date.today.beginning_of_day).where("status = ?", "confirmed")
+    @pastengagements    = @structure.engagements.all.where("endengagement < ?", Date.today.beginning_of_day).where("status = ?", "confirmed")
+    @pendinginvitations = @structure.engagements.all.where("status = ?", "invitation")
+    @optionengagements  = @structure.engagements.all.where("status = ?", "option")
   end
 
   # GET /structures/new
@@ -26,7 +26,15 @@ class StructuresController < ApplicationController
   # GET /structures/1/edit
   def edit
   end
-
+  def search
+    if params[:title]
+      @structures = Structure.search_by_title(params[:title])
+    else
+      @structures = Structure.all
+    end
+    render '/structures/search.json'
+    #render json: @structures
+  end
   # POST /structures
   # POST /structures.json
   def create
@@ -36,6 +44,7 @@ class StructuresController < ApplicationController
       if @structure.save
         format.html { redirect_to @structure, notice: 'Structure was successfully created.' }
         format.json { render :show, status: :created, location: @structure }
+        
       else
         format.html { render :new }
         format.json { render json: @structure.errors, status: :unprocessable_entity }
@@ -65,9 +74,6 @@ class StructuresController < ApplicationController
       format.html { redirect_to structures_url, notice: 'Structure was successfully destroyed.' }
       format.json { head :no_content }
     end
-  end
-  def search
-      render json: Structure.all.typeahead_search(params[:title])
   end
   private
     # Use callbacks to share common setup or constraints between actions.

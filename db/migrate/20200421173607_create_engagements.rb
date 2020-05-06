@@ -2,8 +2,8 @@ class CreateEngagements < ActiveRecord::Migration[6.0]
   def change
     create_table :engagements do |t|
       t.string :title
-      t.date :begin
-      t.date :end
+      t.date :startengagement
+      t.date :endengagement
       t.boolean :contract
       t.boolean :hotel
       t.boolean :taxi
