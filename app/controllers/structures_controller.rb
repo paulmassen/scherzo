@@ -5,11 +5,13 @@ class StructuresController < ApplicationController
   # GET /structures.json
   def index
     @structures = Structure.all
+    
   end
 
   # GET /structures/1
   # GET /structures/1.json
   def show
+    #@contacts = Contact.all.where()
     @futursengagements  = @structure.engagements.all.where("begin >= ?", Date.today).where("status == ?", "confirmed")
     @pastengagements    = @structure.engagements.all.where("end <= ?", Date.today).where("status == ?", "confirmed")
     @pendinginvitations = @structure.engagements.all.where("status == ?", "invitation")

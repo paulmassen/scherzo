@@ -107,9 +107,11 @@
   </div>
   
   <div class="input-field">
+     <ul class="collection">
     <%= form.fields_for :partners do |partner| %>
       <%= render "partner_fields", :f => partner %>
     <% end %>
+    </ul>
     <%= link_to_add_association '<div class="btn">Add partner</div>'.html_safe, form, :partners, { 'data-association-insertion-method': "after"} %>
   </div>
   

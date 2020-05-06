@@ -14,7 +14,7 @@ require("moment");
 require("fullcalendar");
 require("trix");
 require("@rails/actiontext");
-require("selectize");
+//require("selectize");
 require("choices.js");
 //require("jquery-ui");
 //require("materialize-css")
@@ -59,6 +59,27 @@ import 'materialize-css/dist/js/materialize.js';
   $('#calendar').fullCalendar('delete'); 
   $('#calendar').html('');
 };*/
+$(document).ready(function(){
+    const Choices = require('choices.js');
+  var singleFetch = new Choices('#mydemo', {
+          searchPlaceholderValue: 'Search a structure',
+          removeItemButton: true,
+        })
+          .setChoices(function() {
+            return fetch(
+              '/structures.json'
+            )
+              .then(function(response) {
+                return response.json();
+              })
+              .then(function(data) {
+                return data.map(function(release) {
+                  return { label: release.title, value: release.id };
+                });
+              });
+          });
+          
+})
 
 $(document).on('turbolinks:load', function() {
     $('.collapsible').collapsible({

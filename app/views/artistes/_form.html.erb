@@ -31,7 +31,7 @@
     <li>
       <div class="collapsible-header"><i class="material-icons">perm_identity</i>Passeport</div>
         <div class="collapsible-body">
-            
+            <div class="row">
           <div class="field col s12">
             <%= form.label :passportnumber %>
             <%= form.text_field :passportnumber %>
@@ -42,11 +42,13 @@
     <%= form.label :passportexpire %>
     <%= form.text_field :passportexpire, class: "datepicker" %>
   </div>
+  </div>
         </div>
     </li>
     <li>
       <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
       <div class="collapsible-body">
+        <div class="row">
           <div class="field col s6">
     <%= form.label :birthplacecity %>
     <%= form.text_field :birthplacecity %>
@@ -72,10 +74,12 @@
     <%= form.text_field :maidenname %>
   </div>
       </div>
+      </div>
     </li>
     <li>
       <div class="collapsible-header"><i class="material-icons">whatshot</i>Informations Administratives</div>
       <div class="collapsible-body">
+        <div class="row">
           <div class="field col s6">
     <%= form.label :socialsecurity %>
     <%= form.text_field :socialsecurity %>
@@ -88,7 +92,7 @@
     <%= form.label :audiens %>
     <%= form.text_field :audiens %>
   </div>
-      
+      </div>
       </div>
     </li>
   </ul>
