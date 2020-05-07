@@ -12,11 +12,12 @@
   <div class="row">
      <div data-controller="choices" data-search-path="/contacts/search?title=" data-reflex-root="#structures" data-remove-item-button="true" data-search-result-limit="100" data-no-choices-text="Start typing to search...">
   
-  <select class="form-control" data-target="choices.select"  type="select-one" id="mydemo"  data-id="<%= @structure.id%>"></select>
+  <select class="form-control" data-id="<%= @structure.id %>" data-reflex-root="" data-reflex="change->StructureReflex#add_contact" data-target="choices.select"  type="select-one" id="mydemo"  data-id="<%= @structure.id%>"></select>
   <datalist data-target="choices.options"></datalist>
 
 </div>
-
+</div>
+<div id="contactlist" class="row">
       
      <% @structure.responsabilities.each do |contact| %>
  
@@ -24,7 +25,8 @@
       <div class="card blue-grey darken-1">
         <div class="card-content white-text">
           <span class="card-title"><%= Contact.find_by(id: contact.contact_id).surname %> <%= Contact.find_by(id: contact.contact_id).name %></span>
-          <p><%= contact.fonction %></p>
+          <input type="text"><%= contact.fonction %></input>
+          
         </div>
         <div class="card-action">
           <a href="#">This is a link</a>

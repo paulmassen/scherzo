@@ -28,13 +28,13 @@
       <%= form.select :category, [["Musique de Chambre", "chamber"], ["Solo Recital", "solorecital"], ["Duo Recital", "duorecital"], ["Avec Orchestre", "orchestra"]], {}, { :class => "browser-default", :id => "eventtype" } %>
       </div>
   <div class="field col s6">
-    <%= form.label :begin %>
-    <%= form.text_field :begin, class: "datepicker" %>
+    <%= form.label :startengagement %>
+    <%= form.text_field :startengagement, class: "datepicker" %>
   </div>
 
   <div class="field col s6">
-    <%= form.label :end %>
-    <%= form.text_field :end, class: "datepicker" %>
+    <%= form.label :endengagement %>
+    <%= form.text_field :endengagement, class: "datepicker" %>
   </div>
   <div class="row" >
     <h3>Organisation</h3>
@@ -42,7 +42,7 @@
 <p>Ajouter une Structure à cet engagement</p>
 <div class="input-field">
 <!-- <select id="mydemo" class="browser-default" data-reflex-root="#structures" type="select-one" data-reflex="change->EngagementReflex#update_structure" data-id="<%# engagement.id %>"></select>-->
-<div data-controller="choices" data-search-path="/structures/search?title=" data-reflex-root="#structures" data-remove-item-button="true" data-search-result-limit="100" data-no-choices-text="Start typing to search...">
+<div data-controller="choices" data-search-path="/structures/search?title=" data-reflex-root="#structures" data-remove-item-button="true" data-search-result-limit="20" data-add-Items="true" data-no-choices-text="Cherchez une structure..." data-should-sort-items="false" data-no-results-found="Aucun résultat" data-loading-text="Chargement..." data-item-Select-Text="Sélectionner" data-add-Item-text="Créer cet élément" data-appendValue="TEST AJOUT">
   
   <select class="form-control" data-target="choices.select"  type="select-one" id="mydemo" data-reflex="change->EngagementReflex#update_structure" data-id="<%=engagement.id%>"></select>
   <datalist data-target="choices.options"></datalist>
@@ -63,7 +63,7 @@
   </div>
   </div>
 
-  </div>
+
   <div class="row" id="checkboxsection">
     <h3>To-do Liste</h3>
 <div class="col s6" >
