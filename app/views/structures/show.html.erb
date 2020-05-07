@@ -10,13 +10,14 @@
 </p>
 <h3>Contacts</h3>
   <div class="row">
-     <div data-controller="choices" data-search-path="/contacts/search?title=" data-reflex-root="#structures" data-remove-item-button="true" data-search-result-limit="100" data-no-choices-text="Start typing to search...">
+     <div data-controller="choices" data-search-path="/contacts/search?title=" data-reflex-root="#contactlist" data-remove-item-button="true" data-add-item="{'bonjour', 'test'}" data-search-result-limit="100" data-no-Results-Text="Créer un nouveau contact" data-no-choices-text="Sélectionner un contact à ajouter...">
   
-  <select class="form-control" data-id="<%= @structure.id %>" data-reflex-root="" data-reflex="change->StructureReflex#add_contact" data-target="choices.select"  type="select-one" id="mydemo"  data-id="<%= @structure.id%>"></select>
+  <select class="form-control" data-id="<%= @structure.id %>" data-reflex-root="#contactlist" data-reflex="change->StructureReflex#add_contact" data-target="choices.select"  type="select-one" id="mydemo"  data-id="<%= @structure.id%>"></select>
   <datalist data-target="choices.options"></datalist>
+  <div id="modalContacts" class="modal">Modal box</div>
 
 </div>
-</div>
+</div> 
 <div id="contactlist" class="row">
       
      <% @structure.responsabilities.each do |contact| %>

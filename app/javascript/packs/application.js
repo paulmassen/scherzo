@@ -59,8 +59,15 @@ import 'materialize-css/dist/js/materialize.js';
   $('#calendar').fullCalendar('delete'); 
   $('#calendar').html('');
 };*/
-/*$(document).ready(function(){
-    const Choices = require('choices.js');
+$(document).ready(function(){
+$('.has-no-results').click(function(){
+console.log("clické!")
+	  $.getScript('/contacts/new', function(){
+	    
+	  });
+});
+});
+/*    const Choices = require('choices.js');
   var singleFetch = new Choices('#mydemo', {
           searchPlaceholderValue: 'Search a structure',
           removeItemButton: true,
@@ -118,7 +125,7 @@ $('#remove_structure').click(function(event){
 
 
   $('select:not(#mydemo)').formSelect();
-  $('.datepicker').datepicker();
+  //$('.datepicker').datepicker();
   $('.sidenav').sidenav();
 
   /*    $(document).on('turbolinks:load', function(){

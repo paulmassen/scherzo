@@ -1,0 +1,52 @@
+<%= form_with(model: engagement, local: true) do |form| %>
+  <% if engagement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(engagement.errors.count, "error") %> prohibited this engagement from being saved:</h2>
+
+      <ul>
+        <% engagement.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="row">
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+    <div class="input-field">
+    <%= form.collection_select :artiste_id, Artiste.all, :id, :name, { :class => "dropdown" } %>
+  </div>
+  <div class="input-field">
+    <p>Statut de l'engagement</p>
+      <%= form.select :status, [["Confirmé", "confirmed"], ["Invitation", "invitation"], ["Option", "option"]], {}, { :class => "browser-default", :id => "eventtype" } %>
+      </div>
+  <div class="input-field">
+    <p>Type d'engagement</p>
+      <%= form.select :category, [["Musique de Chambre", "chamber"], ["Solo Recital", "solorecital"], ["Duo Recital", "duorecital"], ["Avec Orchestre", "orchestra"]], {}, { :class => "browser-default", :id => "eventtype" } %>
+      </div>
+  <div class="field col s6">
+    <%= form.label :startengagement %>
+    <%= form.text_field :startengagement, class: "flatpickr" %>
+  </div>
+
+  <div class="field col s6">
+    <%= form.label :endengagement %>
+    <%= form.text_field :endengagement, class: "datepicker", id: "secondfield" %>
+  </div>
+
+   <%# link_to_add_association 'add structure', form, :structures %>
+   <%#  %>
+  </div>
+
+
+  <div class="actions">
+    <%= link_to '<i class="material-icons">keyboard_return</i> Retour'.html_safe, engagements_path , :class => "btn amber lighten-1"%>
+    <%= form.submit "Enregistrer", :class => "btn blue darken-2" %>
+    
+  </div>
+
+</div>
+<% end %>

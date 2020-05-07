@@ -11,7 +11,7 @@ class StructuresController < ApplicationController
   # GET /structures/1
   # GET /structures/1.json
   def show
-    #@contacts = Contact.all.where()
+    @contacts = Contact.all
     @futursengagements  = @structure.engagements.all.where("startengagement > ?", Date.today.beginning_of_day).where("status = ?", "confirmed")
     @pastengagements    = @structure.engagements.all.where("endengagement < ?", Date.today.beginning_of_day).where("status = ?", "confirmed")
     @pendinginvitations = @structure.engagements.all.where("status = ?", "invitation")
@@ -42,7 +42,7 @@ class StructuresController < ApplicationController
 
     respond_to do |format|
       if @structure.save
-        format.html { redirect_to @structure, notice: 'Structure was successfully created.' }
+        format.html { redirect_back fallback_location: index, notice: 'Structure was successfully created.' }
         format.json { render :show, status: :created, location: @structure }
         
       else
@@ -57,7 +57,7 @@ class StructuresController < ApplicationController
   def update
     respond_to do |format|
       if @structure.update(structure_params)
-        format.html { redirect_to @structure, notice: 'Structure was successfully updated.' }
+        format.html { redirect_back fallback_location: index, notice: 'Structure was successfully updated.' }
         format.json { render :show, status: :ok, location: @structure }
       else
         format.html { render :edit }

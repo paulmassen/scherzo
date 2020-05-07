@@ -15,12 +15,14 @@
  *= require fullcalendar
  *= require materialize-css
  *= require material_icons
- *= require selectize
 
  */
  
  @import "./actiontext.scss";
 
+.choices__item.choices__item--choice.has-no-results{
+  cursor: pointer!important;
+}
 header, main, footer {
     margin-left: 300px;
 }

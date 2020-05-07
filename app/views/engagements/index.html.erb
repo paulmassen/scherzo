@@ -57,7 +57,7 @@
         <td><i class="material-icons">clear</i></td>
         <% end %>
       
-        <td><%#= engagement.artiste.name %></td>
+        <td><%= engagement.artiste.name %></td>
         <!--<td><#%= link_to 'Show', engagement   %></td>-->
         <td><%= link_to '<i class="material-icons">edit</i>'.html_safe, edit_engagement_path(engagement) %></td>
         <td><%= link_to '<i class="material-icons">delete</i>'.html_safe, engagement, method: :delete, data: { confirm: "Are you sure?" } %></td>
