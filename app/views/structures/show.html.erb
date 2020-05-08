@@ -10,12 +10,28 @@
 </p>
 <h3>Contacts</h3>
   <div class="row">
-     <div data-controller="choices" data-search-path="/contacts/search?title=" data-reflex-root="#contactlist" data-remove-item-button="true" data-add-item="{'bonjour', 'test'}" data-search-result-limit="100" data-no-Results-Text="Créer un nouveau contact" data-no-choices-text="Sélectionner un contact à ajouter...">
+     <div data-controller="choices" id="mycontactselect" data-search-path="/contacts/search?title=" data-reflex-root="#contactlist" data-remove-item-button="true" data-add-item="{'bonjour', 'test'}" data-search-result-limit="100" data-no-Results-Text="<span onclick='addContactTrigger()'><i class='material-icons'>person_add</i> Créer un nouveau contact</span>" data-no-choices-text="Sélectionner un contact à ajouter...">
   
   <select class="form-control" data-id="<%= @structure.id %>" data-reflex-root="#contactlist" data-reflex="change->StructureReflex#add_contact" data-target="choices.select"  type="select-one" id="mydemo"  data-id="<%= @structure.id%>"></select>
   <datalist data-target="choices.options"></datalist>
   <div id="modalContacts" class="modal">Modal box</div>
-
+<script>
+/*   $('#mydemo').change(function(){
+      
+$('.has-no-results').click(function(){
+console.log("clické!")
+	  $.getScript('/contacts/new', function(){
+	    
+	  });
+});
+});*/
+function addContactTrigger(){
+    console.log('triggered');
+   $.getScript('/contacts/new', function(){
+	    
+	  });  
+}
+</script>
 </div>
 </div> 
 <div id="contactlist" class="row">

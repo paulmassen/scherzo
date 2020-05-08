@@ -36,15 +36,15 @@
     <%= form.label :endengagement %>
     <%= form.text_field :endengagement, class: "datepicker", id: "secondfield" %>
   </div>
-  <div class="row" >
+  <div class="row">
     <h3>Organisation</h3>
       <div class='links'>
 <p>Ajouter une Structure à cet engagement</p>
 <div class="input-field">
 <!-- <select id="mydemo" class="browser-default" data-reflex-root="#structures" type="select-one" data-reflex="change->EngagementReflex#update_structure" data-id="<%# engagement.id %>"></select>-->
 <div data-controller="choices" data-search-path="/structures/search?title=" data-reflex-root="#structures" data-remove-item-button="true" data-search-result-limit="20" data-add-Items="true" data-no-choices-text="Cherchez une structure..." data-should-sort-items="false" data-no-results-found="Aucun résultat" data-loading-text="Chargement..." data-item-Select-Text="Sélectionner" data-add-Item-text="Créer cet élément" data-appendValue="TEST AJOUT">
-  
-  <select class="form-control" data-target="choices.select"  type="select-one" id="mydemo" data-reflex="change->EngagementReflex#update_structure" data-id="<%=engagement.id%>"></select>
+
+  <select class="form-control" data-target="choices.select" type="select-one" id="mydemo" data-reflex="change->EngagementReflex#update_structure" data-id="<%= engagement.id %>"></select>
   <datalist data-target="choices.options"></datalist>
 
 </div>
@@ -63,10 +63,9 @@
   </div>
   </div>
 
-
   <div class="row" id="checkboxsection">
     <h3>To-do Liste</h3>
-<div class="col s6" >
+<div class="col s6">
   <div class="field">
     <label>
     <%= form.check_box :contract , data: { reflex: "click->EngagementReflex#toggle_contract", "reflex-root": "#checkboxsection", id: engagement.id} %>
@@ -91,7 +90,7 @@
        <label>
     <%= form.check_box :taxi, data: { reflex: "click->EngagementReflex#toggle_taxi","reflex-root": "#checkboxsection", id: engagement.id} %>
     <span>Taxi </span></label>
-    
+
   </div>
 
   <div class="field">
@@ -113,7 +112,7 @@
   <div class="input-field">
     <%= form.collection_select :programme_id, Programme.all, :id, :title, { :class => "dropdown" } %>
   </div>
-  
+
   <div class="input-field">
      <ul class="collection">
     <%= form.fields_for :partners do |partner| %>
@@ -122,8 +121,7 @@
     </ul>
     <%= link_to_add_association '<div class="btn">Add partner</div>'.html_safe, form, :partners, { 'data-association-insertion-method': "after"} %>
   </div>
-  
-  
+
   <h3>Planning</h3>
   <div>
     <table>
@@ -138,7 +136,7 @@
       <th>remove</th>
       </thead>
       <tbody>
-  
+
     <%= form.fields_for :events do |event| %>
       <%= render "event_fields", :f => event %>
     <% end %>
@@ -146,7 +144,7 @@
     </tbody>
       </table>
     <%= link_to_add_association '<div class="btn">Add event</div>'.html_safe, form, :events, { 'data-association-insertion-method': "after", 'data-association-insertion-node': "tr:last" } %>
-    
+
     <h3>Conditions</h3>
   </div>
   <div class="actions">

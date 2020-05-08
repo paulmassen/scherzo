@@ -59,14 +59,7 @@ import 'materialize-css/dist/js/materialize.js';
   $('#calendar').fullCalendar('delete'); 
   $('#calendar').html('');
 };*/
-$(document).ready(function(){
-$('.has-no-results').click(function(){
-console.log("clické!")
-	  $.getScript('/contacts/new', function(){
-	    
-	  });
-});
-});
+
 /*    const Choices = require('choices.js');
   var singleFetch = new Choices('#mydemo', {
           searchPlaceholderValue: 'Search a structure',
