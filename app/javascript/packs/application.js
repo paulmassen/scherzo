@@ -16,6 +16,7 @@ require("trix");
 require("@rails/actiontext");
 //require("selectize");
 require("choices.js");
+//require("stimulus-inline-edit");
 //require("jquery-ui");
 //require("materialize-css")
 // jquery

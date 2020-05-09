@@ -1,7 +1,17 @@
 <p id="notice"><%= notice %></p>
-<h1>
-   <%= @artiste.name %>
-</h1>
+<div class="field">
+     <p
+    data-controller="inline-edit"
+    data-inline-edit-model="artiste"
+    data-inline-edit-name="name"
+    data-inline-edit-input-class="input"
+    data-target="inline-edit.source"
+    data-action="click->inline-edit#toggle click@window->inline-edit#close"
+   >
+    <%= @artiste.name %>
+  
+</p>
+</div>
 <hr>
 <p>
    <strong>Address:</strong>
