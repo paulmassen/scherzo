@@ -3,9 +3,9 @@
 one:
   name: MyString
   instrument: MyString
-  engagement: one
+  engagement_id: 1
 
 two:
   name: MyString
   instrument: MyString
-  engagement: two
+  engagement_id: 2

@@ -2,7 +2,6 @@
   <% if engagement.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(engagement.errors.count, "error") %> prohibited this engagement from being saved:</h2>
-
       <ul>
         <% engagement.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -10,146 +9,205 @@
       </ul>
     </div>
   <% end %>
-<div class="row">
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-    <div class="input-field">
-    <%= form.collection_select :artiste_id, Artiste.all, :id, :name, { :class => "dropdown" } %>
-  </div>
-  <div class="input-field">
-    <p>Statut de l'engagement</p>
-      <%= form.select :status, [["Confirmé", "confirmed"], ["Invitation", "invitation"], ["Option", "option"]], {}, { :class => "browser-default", :id => "eventtype" } %>
-      </div>
-  <div class="input-field">
-    <p>Type d'engagement</p>
-      <%= form.select :category, [["Musique de Chambre", "chamber"], ["Solo Recital", "solorecital"], ["Duo Recital", "duorecital"], ["Avec Orchestre", "orchestra"]], {}, { :class => "browser-default", :id => "eventtype" } %>
-      </div>
-  <div class="field col s6">
-    <%= form.label :startengagement %>
-    <%= form.text_field :startengagement, class: "flatpickr" %>
-  </div>
-
-  <div class="field col s6">
-    <%= form.label :endengagement %>
-    <%= form.text_field :endengagement, class: "datepicker", id: "secondfield" %>
-  </div>
   <div class="row">
-    <h3>Organisation</h3>
-      <div class='links'>
-<p>Ajouter une Structure à cet engagement</p>
-<div class="input-field">
-<!-- <select id="mydemo" class="browser-default" data-reflex-root="#structures" type="select-one" data-reflex="change->EngagementReflex#update_structure" data-id="<%# engagement.id %>"></select>-->
-<div data-controller="choices" data-search-path="/structures/search?title=" data-reflex-root="#structures" data-remove-item-button="true" data-search-result-limit="20" data-add-Items="true" data-no-choices-text="Cherchez une structure..." data-should-sort-items="false" data-no-results-found="Aucun résultat" data-loading-text="Chargement..." data-item-Select-Text="Sélectionner" data-add-Item-text="Créer cet élément" data-appendValue="TEST AJOUT">
-
-  <select class="form-control" data-target="choices.select" type="select-one" id="mydemo" data-reflex="change->EngagementReflex#update_structure" data-id="<%= engagement.id %>"></select>
-  <datalist data-target="choices.options"></datalist>
-
-</div>
-
-</div>
- </div>
-</div>
-   <%# link_to_add_association 'add structure', form, :structures %>
-   <%#  %>
-  </div>
-    <div id='structures'>
+    <fieldset class="z-depth-1">
+      <div class="field col s12">
+        <%= form.label :title %>
+        <%= form.text_field :title  %>
+      </div>
+      <div class="input-field col s12">
+        <%= form.collection_select :artiste_id, Artiste.all, :id, :name, { :class => "dropdown", :placeholder => "Sélectionner un artiste" } %>
+      </div>
+    </fieldset>
+    <fieldset class="z-depth-1">
+      <div class="input-field col s6">
+        <p>Statut de l'engagement</p>
+        <%= form.select :status, [["Confirmé", "confirmed"], ["Invitation", "invitation"], ["Option", "option"]], {}, { :class => "browser-default", :id => "eventtype" } %>
+      </div>
+      <div class="input-field col s6">
+        <p>Type d'engagement</p>
+        <%= form.select :category, [["Musique de Chambre", "chamber"], ["Solo Recital", "solorecital"], ["Duo Recital", "duorecital"], ["Avec Orchestre", "orchestra"]], {}, { :class => "browser-default", :id => "eventtype" } %>
+      </div>
+      <div class="field col s6">
+        <%= form.label :startengagement, "Début de l'engagement" %>
+        <%= form.text_field :startengagement, class: "flatpickr" %>
+      </div>
+      <div class="field col s6">
+        <%= form.label :endengagement, "Fin de l'engagement" %>
+        <%= form.text_field :endengagement, class: "datepicker", id: "secondfield" %>
+      </div>
+    </fieldset>
+    <fieldset class="z-depth-1">
       <div class="row">
-    <%= form.fields_for :structures do |structure| %>
-      <%= render 'structure_fields', :f => structure , engagementid: @engagement.id %>
-    <% end %>
+        <h3>Organisation</h3>
+        <div class='links'>
+          <p>Ajouter une Structure à cet engagement</p>
+          <div class="input-field">
+            <!-- <select id="mydemo" class="browser-default" data-reflex-root="#structures" type="select-one" data-reflex="change->EngagementReflex#update_structure" data-id="<%# engagement.id %>"></select>-->
+            <div data-controller="choices" data-search-path="/structures/search?title=" data-reflex-root="#structures" data-remove-item-button="true" data-search-result-limit="20" data-add-Items="true" data-no-choices-text="Cherchez une structure..." data-should-sort-items="false" data-no-results-found="Aucun résultat" data-loading-text="Chargement..." data-item-Select-Text="Sélectionner" data-add-Item-text="Créer cet élément" data-placeholder="Sélectionner des structures">
+              <select class="form-control" data-target="choices.select" type="select-one" id="mydemo" data-reflex="change->EngagementReflex#update_structure" data-id="<%= engagement.id %>"></select>
+              <datalist data-target="choices.options"></datalist>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%# link_to_add_association 'add structure', form, :structures %>
+      <%#  %>
+      <div id='structures'>
+        <div class="row">
+          <%= form.fields_for :structures do |structure| %>
+            <%= render 'structure_fields', :f => structure , engagementid: @engagement.id %>
+          <% end %>
+        </div>
+      </div>
+      <h3>Contacts</h3>
+      <div class="row">
+        <div data-controller="choices" id="mycontactselect" data-search-path="/contacts/search?title=" data-reflex-root="#contactlist" data-remove-item-button="true" data-add-item="{'bonjour', 'test'}" data-search-result-limit="100" data-placeholder="Sélectionner un contact" data-no-Results-Text="<span onclick='addContactTrigger()'><i class='material-icons'>person_add</i> Créer un nouveau contact</span>" data-no-choices-text="Sélectionner un contact à ajouter...">
+        <select class="form-control" data-id="<%= @engagement.id %>" data-reflex-root="#contactlist" data-reflex="change->EngagementReflex#add_contact" data-target="choices.select"  type="select-one" id="mydemo"  data-id="<%= @engagement.id%>"></select>
+        <datalist data-target="choices.options"></datalist>
+        <div id="modalContacts" class="modal">Modal box</div>
+        <script>
+          function addContactTrigger(){
+              console.log('triggered');
+             $.getScript('/contacts/new', function(){
+          	  });
+          }
+          $('#addpartner').click(function(){
+            console.log("deleted input field");
+            $('#partnername')[0].value = '';
+            $('#partnerinstrument')[0].value = '';
+            })
+          
+        </script>
+        <div id="contactlist" class="row">
+          <% @engagement.contacts.each do |contact| %>
+            <div class="col s4">
+              <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                  <span class="card-title"><%= contact.surname %> <%= contact.name %></span>
+                  <span></span>
+                </div>
+                <div class="card-action">
+                  <a href="<%= contact_url(contact) %>">Voir</a>
+                  <!--<a href="#">This is a link</a>-->
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset class="z-depth-1">
+    <div class="row" id="checkboxsection">
+      <div class="col s6">
+          <h3>To-do Liste</h3>
+        <div class="row">
+          <div class="col s6">
+            <div class="field">
+              <label>
+                <%= form.check_box :contract , data: { reflex: "click->EngagementReflex#toggle_contract", "reflex-root": "#checkboxsection", id: engagement.id} %>
+                <span>Contract</span>
+              </label>
+            </div>
+            <div class="field">
+              <label>
+                <%= form.check_box :voyages, data: { reflex: "click->EngagementReflex#toggle_voyages","reflex-root": "#checkboxsection", id: engagement.id} %>
+                <span>Voyages</span>
+              </label>
+            </div>
+            <div class="field">
+              <label>
+                <%= form.check_box :hotel, data: { reflex: "click->EngagementReflex#toggle_hotel","reflex-root": "#checkboxsection", id: engagement.id} %>
+                <span>Hotel</span>
+              </label>
+            </div>
+          </div>
+          <div class="col s6">
+            <div class="field">
+              <label>
+                <%= form.check_box :taxi, data: { reflex: "click->EngagementReflex#toggle_taxi","reflex-root": "#checkboxsection", id: engagement.id} %>
+                <span>Taxi </span></label>
+            </div>
+            <div class="field">
+              <label>
+                <%= form.check_box :sent, data: { reflex: "click->EngagementReflex#toggle_sent","reflex-root": "#checkboxsection", id: engagement.id} %>
+                <span>Sent </span>
+              </label>
+            </div>
+            <div class="field">
+              <label>
+                <%= form.check_box :rehearsals, data: { reflex: "click->EngagementReflex#toggle_rehearsals","reflex-root": "#checkboxsection", id: engagement.id} %>
+                <span>Rehearsals</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col s6">
+        <h3>Artistique</h3>
+        <h4>Programme</h4>
+        <div class="input-field">
+          <%= form.collection_select :programme_id, Programme.all, :id, :title, { :class => "dropdown" } %>
+        </div>
+        <h4>Autres artistes</h4>
+        
+           <div class="input-field row">
+    <div class="col s5">
+      <input type="text" id="partnername" name="partnername" class="browser-default" data-reflex-root="#partner" data-reflex="input->EngagementReflex#change_partner_name"><br>
+      <label for="partnername">Nom</label>
+    </div>
+    <div class="col s5">
+      <input type="text" id="partnerinstrument" class="browser-default" name="partnerinstrument" data-reflex-root="#partner" data-reflex-permanent data-reflex="input->EngagementReflex#change_partner_instrument">
+      <label for="partnerinstrument">Instrument</label><br>
+    </div>
+    <div class="col s2 valign-wrapper">
+      <input type="submit" data-reflex="click->EngagementReflex#add_partner" id="addpartner" data-reflex-permanent data-reflex-root="#partner" class="btn" data-id="<%= @engagement.id %>"></span>
+    </div>
   </div>
-  </div>
+        
+          <div class="row">
+          <ul class="collection" id="partner">
+            
+            <% engagement.partners.each do |partner| %>
+              <%# render "partner_fields", :f => partner %>
+            <li class="collection-item"><%= partner.name %> <span class="secondary-content"><%= partner.instrument %>  <a href="#" data-engagementid="<%= engagement.id %>" data-partnerid="<%= partner.id %>" data-reflex="click->EngagementReflex#remove_partner"><i class="material-icons">clear</i></a></span></li>
+            <% end %>
+          </ul>
+          <%# link_to_add_association '<div class="btn">Add partner</div>'.html_safe, form, :partners, { 'data-association-insertion-method': "after"} %>
+        </div>
+        
 
-  <div class="row" id="checkboxsection">
-    <h3>To-do Liste</h3>
-<div class="col s6">
-  <div class="field">
-    <label>
-    <%= form.check_box :contract , data: { reflex: "click->EngagementReflex#toggle_contract", "reflex-root": "#checkboxsection", id: engagement.id} %>
-    <span>Contract</span>
-    </label>
-  </div>
-  <div class="field">
-<label>
-    <%= form.check_box :voyages, data: { reflex: "click->EngagementReflex#toggle_voyages","reflex-root": "#checkboxsection", id: engagement.id} %>
-    <span>Voyages</span>
-    </label>
-  </div>
-  <div class="field">
-<label>
-    <%= form.check_box :hotel, data: { reflex: "click->EngagementReflex#toggle_hotel","reflex-root": "#checkboxsection", id: engagement.id} %>
-    <span>Hotel</span>
-    </label>
-  </div>
-</div>
-<div class="col s6">
-  <div class="field">
-       <label>
-    <%= form.check_box :taxi, data: { reflex: "click->EngagementReflex#toggle_taxi","reflex-root": "#checkboxsection", id: engagement.id} %>
-    <span>Taxi </span></label>
-
-  </div>
-
-  <div class="field">
-     <label>
-    <%= form.check_box :sent, data: { reflex: "click->EngagementReflex#toggle_sent","reflex-root": "#checkboxsection", id: engagement.id} %>
-<span>Sent </span>
-</label>
-  </div>
-  <div class="field">
-   <label>
-    <%= form.check_box :rehearsals, data: { reflex: "click->EngagementReflex#toggle_rehearsals","reflex-root": "#checkboxsection", id: engagement.id} %>
-     <span>Rehearsals</span>
-     </label>
-  </div>
-</div>
-</div>
-
-<h3>Artistique</h3>
-  <div class="input-field">
-    <%= form.collection_select :programme_id, Programme.all, :id, :title, { :class => "dropdown" } %>
-  </div>
-
-  <div class="input-field">
-     <ul class="collection">
-    <%= form.fields_for :partners do |partner| %>
-      <%= render "partner_fields", :f => partner %>
-    <% end %>
-    </ul>
-    <%= link_to_add_association '<div class="btn">Add partner</div>'.html_safe, form, :partners, { 'data-association-insertion-method': "after"} %>
-  </div>
-
-  <h3>Planning</h3>
-  <div>
-    <table>
-      <thead>
-      <th>Date</th>
-      <th>Type</th>
-      <th>Début</th>
-      <th>Fin</th>
-      <th>desc1</th>
-      <th>desc2</th>
-      <th>lieu</th>
-      <th>remove</th>
-      </thead>
-      <tbody>
-
-    <%= form.fields_for :events do |event| %>
-      <%= render "event_fields", :f => event %>
-    <% end %>
-    <tr id="tasks"></tr>
-    </tbody>
-      </table>
-    <%= link_to_add_association '<div class="btn">Add event</div>'.html_safe, form, :events, { 'data-association-insertion-method': "after", 'data-association-insertion-node': "tr:last" } %>
-
-    <h3>Conditions</h3>
-  </div>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset class="z-depth-1">
+            <h3>Planning</h3>
+        <div>
+          <table>
+            <thead>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Début</th>
+              <th>Fin</th>
+              <th>desc1</th>
+              <th>desc2</th>
+              <th>lieu</th>
+              <th>remove</th>
+            </thead>
+            <tbody>
+              <%= form.fields_for :events do |event| %>
+                <%= render "event_fields", :f => event %>
+              <% end %>
+              <tr id="tasks"></tr>
+            </tbody>
+          </table>
+          <%= link_to_add_association '<div class="btn">Add event</div>'.html_safe, form, :events, { 'data-association-insertion-method': "after", 'data-association-insertion-node': "tr:last" } %>
+          <h3>Conditions</h3>
+        </div>
+  </fieldset>
   <div class="actions">
     <%= form.submit "Enregistrer", :class => "btn blue darken-2" %>
   </div>
-
 </div>
 <% end %>

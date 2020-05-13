@@ -35,7 +35,6 @@ class ContactsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update contact" do
     patch contact_url(@contact), params: { contact: { name: @contact.name, surname: @contact.surname } }
-    assert_redirected_to contact_url(@contact)
   end
 
   test "should destroy contact" do

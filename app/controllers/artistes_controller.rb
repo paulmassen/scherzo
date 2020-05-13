@@ -55,7 +55,7 @@ class ArtistesController < ApplicationController
   def update
     respond_to do |format|
       if @artiste.update(artiste_params)
-        format.html { redirect_to action: 'index', notice: 'Artiste was successfully updated.' }
+        format.html { redirect_back fallback_location: index, notice: 'Artiste was successfully updated.' }
         format.json { render :show, status: :ok, location: @artiste }
       else
         format.html { render :edit }
@@ -104,6 +104,6 @@ class ArtistesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def artiste_params
-      params.require(:artiste).permit(:name, :address, :birthdate, :passportnumber, :passportdelivered, :passportexpire, :color, :image, :birthplacecity, :birthplacedepartment, :birthplacecountry, :nationality, :familystatus, :maidenname, :socialsecurity, :congesspectacles, :audiens, :biography)
+      params.require(:artiste).permit(:name, :address, :birthdate, :passportnumber, :passportdelivered, :passportexpire, :color, :image, :birthplacecity, :birthplacedepartment, :birthplacecountry, :nationality, :familystatus, :maidenname, :socialsecurity, :instrument, :congesspectacles, :audiens, :biography)
     end
 end

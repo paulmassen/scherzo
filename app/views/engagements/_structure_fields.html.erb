@@ -1,23 +1,24 @@
-
-
- <div class="col nested-fields s6 m6">
-      <div class="card grey lighten-5">
-        <div class="card-content white-text">
-          <span class="card-title">
-          <p>  <div class='nested-fields'>
-    <div class="field">
-      <%= f.label :title %>
-      <%= f.text_field :title %>
-    </div></span>
-    <div class="field">
-      <%= f.label :address %>
-      <%= f.text_field :address %>
-    </div>
-  </div></p>
+<div class="col nested-fields s6 m6">
+  <div class="card grey lighten-5">
+    <div class="card-content white-text">
+      <span class="card-title">
+        <p>  
+          <div class='nested-fields'>
+            <div class="field">
+              <%= f.label :title %>
+              <%= f.text_field :title %>
+            </div>
+          </span>
+          <div class="field">
+            <%= f.label :address %>
+            <%= f.text_field :address %>
+          </div>
         </div>
-        <div class="card-action">
-        <a id="remove_structure" href="#" data-engagementid="<%= engagementid %>" data-structureid="<%= f.object.id %>" data-reflex-root="#structures" data-reflex="click->EngagementReflex#remove_structure">Remove this</a>
-        <a href="<%= structure_path(f.object.id) %>"> Voir la fiche de la structure</a>
-        </div>
-      </div>
+      </p>
     </div>
+    <div class="card-action">
+      <a id="remove_structure" href="#" data-engagementid="<%= engagementid %>" data-structureid="<%= f.object.id %>" data-reflex-root="#structures" data-reflex="click->EngagementReflex#remove_structure">Remove this</a>
+      <a href="<%= structure_path(f.object.id) %>"> Voir la fiche de la structure</a>
+    </div>
+  </div>
+</div>

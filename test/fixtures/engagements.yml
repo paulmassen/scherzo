@@ -2,22 +2,24 @@
 
 one:
   title: MyString
-  begin: 2020-04-21
-  end: 2020-04-21
+  startengagement: 2020-04-21
+  endengagement: 2020-04-21
   contract: false
   hotel: false
   taxi: false
   sent: false
   rehearsals: false
-  artiste: MyString
+  artiste: 
+    name: one
 
 two:
   title: MyString
-  begin: 2020-04-21
-  end: 2020-04-21
+  startengagement: 2020-04-21
+  endengagement: 2020-04-21
   contract: false
   hotel: false
   taxi: false
   sent: false
   rehearsals: false
-  artiste: MyString
+  artiste:
+    name: two

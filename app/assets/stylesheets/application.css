@@ -20,6 +20,21 @@
  
  @import "./actiontext.scss";
 
+fieldset {
+  border: none;
+}
+
+@media only screen and (max-width : 992px) {
+  header, main, footer {
+    padding-left: 0;
+    margin-left: 0px;
+  }
+   .main {
+    padding-left: 25px;
+    margin-left: 5px!important;
+  }
+}
+    
 .choices__item.choices__item--choice.has-no-results{
   cursor: pointer!important;
 }
@@ -655,13 +670,5 @@ Cards
 
 
 
-    @media only screen and (max-width : 992px) {
-      header, main, footer {
-        padding-left: 0;
-      }
-       .main {
-        padding-left: 0;
-      }
-    }
-    
+
       

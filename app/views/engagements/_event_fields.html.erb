@@ -1,10 +1,11 @@
-    <tr class="nested-fields">
-      <td><%= f.date_field :eventdate %></td>
-      <td><%= f.select :eventtype, [["Répétitions", "Rehearsals"], ["Concert", "Concert"], ["Avion", "Flight"], ["Train", "Train"], ["Transfert", "Transfert"]], {}, { :class => "browser-default eventtype" } %></td>
-      <td><%= f.time_field :eventbegin %></td>
-      <td><%= f.time_field :eventend, class: "eventend" %></td>
-      <td><%= f.text_area :description1 %></td>
-      <td><%= f.text_area :description2 %></td>
-      <td><%= f.text_area :location %></td>
-      <td><%= link_to_remove_association '<i class="material-icons">clear</i>'.html_safe, f %></td>
-    </tr>
+    
+<tr class="nested-fields">
+  <td><%= f.date_field :eventdate %></td>
+  <td><%= f.select :eventtype, [["Répétitions", "Rehearsals"], ["Concert", "Concert"], ["Avion", "Flight"], ["Train", "Train"], ["Transfert", "Transfert"]], {}, { :class => "browser-default eventtype" } %></td>
+  <td><%= f.time_field :eventbegin %></td>
+  <td><%= f.time_field :eventend, class: "eventend" %></td>
+  <td><%= f.text_area :description1 %></td>
+  <td><%= f.text_area :description2 %></td>
+  <td><%= f.text_area :location %></td>
+  <td><%= link_to_remove_association '<i class="material-icons">clear</i>'.html_safe, f %></td>
+</tr>

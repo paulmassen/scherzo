@@ -1,7 +1,5 @@
 <p id="notice"><%= notice %></p>
-
 <h1>Engagements</h1>
-
 <table class="stripped highlight">
   <thead>
     <tr>
@@ -18,7 +16,6 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @engagements.each do |engagement| %>
       <tr>
@@ -26,37 +23,35 @@
         <td><%= engagement.startengagement %></td>
         <td><%= engagement.endengagement %></td>
         <% if engagement.contract? %>
-        <td><i class="material-icons">check</i></td>
+          <td><i class="material-icons">check</i></td>
         <% else %>
-        <td><i class="material-icons">clear</i></td>
+          <td><i class="material-icons">clear</i></td>
         <% end %>
         <% if engagement.voyages? %>
-        <td><i class="material-icons">check</i></td>
+          <td><i class="material-icons">check</i></td>
         <% else %>
-        <td><i class="material-icons">clear</i></td>
+          <td><i class="material-icons">clear</i></td>
         <% end %>
         <% if engagement.hotel? %>
-        <td><i class="material-icons">check</i></td>
+          <td><i class="material-icons">check</i></td>
         <% else %>
-        <td><i class="material-icons">clear</i></td>
+          <td><i class="material-icons">clear</i></td>
         <% end %>
         <% if engagement.taxi? %>
-        <td><i class="material-icons">check</i></td>
+          <td><i class="material-icons">check</i></td>
         <% else %>
-        <td><i class="material-icons">clear</i></td>
+          <td><i class="material-icons">clear</i></td>
         <% end %>
         <% if engagement.sent? %>
-        <td><i class="material-icons">check</i></td>
+          <td><i class="material-icons">check</i></td>
         <% else %>
-        <td><i class="material-icons">clear</i></td>
+          <td><i class="material-icons">clear</i></td>
         <% end %>
-
-         <% if engagement.rehearsals? %>
-        <td><i class="material-icons">check</i></td>
+        <% if engagement.rehearsals? %>
+          <td><i class="material-icons">check</i></td>
         <% else %>
-        <td><i class="material-icons">clear</i></td>
+          <td><i class="material-icons">clear</i></td>
         <% end %>
-
         <td><%= engagement.artiste.name %></td>
         <!--<td><#%= link_to 'Show', engagement   %></td>-->
         <td><%= link_to '<i class="material-icons">edit</i>'.html_safe, edit_engagement_path(engagement) %></td>
@@ -65,7 +60,5 @@
     <% end %>
   </tbody>
 </table>
-
 <br>
-
 <%= link_to "New Engagement", new_engagement_path, class: "btn amber darken-3" %>

@@ -9,7 +9,44 @@
   <strong>Surname:</strong>
   <%= @contact.surname %>
 </p>
-
+<div class="field">
+  <strong>Adresse:</strong>
+       <p
+    data-controller="inline-edit"
+    data-inline-edit-model="contact"
+    data-inline-edit-name="ville"
+    data-inline-edit-input-class="input"
+    data-target="inline-edit.source"
+    data-action="click->inline-edit#toggle click@window->inline-edit#close"
+   >
+  <%= @contact.address %>
+</p>
+</div>
+<div class="field">
+  <strong>Adresse 2</strong>
+     <p
+    data-controller="inline-edit"
+    data-inline-edit-model="contact"
+    data-inline-edit-name="ville"
+    data-inline-edit-input-class="input"
+    data-target="inline-edit.source"
+    data-action="click->inline-edit#toggle click@window->inline-edit#close"
+   >
+    <%= @contact.address2 %>
+  
+</p>
+<p>
+  <strong>Ville</strong>
+  <%= @contact.ville %>
+</p>
+<p>
+  <strong>Cedex:</strong>
+  <%= @contact.cedex %>
+</p>
+<p>
+  <strong>Pays:</strong>
+  <%= @contact.pays %>
+</p>
 <h3>Fonctions </h3>
 <div class="row">
 <% @contact.responsabilities.each do |s| %>

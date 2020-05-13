@@ -17,10 +17,8 @@ class EngagementsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create engagement" do
     assert_difference('Engagement.count') do
-      post engagements_url, params: { engagement: { artiste: @engagement.artiste, begin: @engagement.begin, contract: @engagement.contract, end: @engagement.end, hotel: @engagement.hotel, rehearsals: @engagement.rehearsals, sent: @engagement.sent, taxi: @engagement.taxi, title: @engagement.title } }
+      post engagements_url, params: { engagement: { artiste: @engagement.artiste.name, startengagement: @engagement.startengagement, contract: @engagement.contract, endengagement: @engagement.endengagement, hotel: @engagement.hotel, rehearsals: @engagement.rehearsals, sent: @engagement.sent, taxi: @engagement.taxi, title: @engagement.title } }
     end
-
-    assert_redirected_to engagement_url(Engagement.last)
   end
 
   test "should show engagement" do
@@ -34,8 +32,7 @@ class EngagementsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update engagement" do
-    patch engagement_url(@engagement), params: { engagement: { artiste: @engagement.artiste, begin: @engagement.begin, contract: @engagement.contract, end: @engagement.end, hotel: @engagement.hotel, rehearsals: @engagement.rehearsals, sent: @engagement.sent, taxi: @engagement.taxi, title: @engagement.title } }
-    assert_redirected_to engagement_url(@engagement)
+    patch engagement_url(@engagement), params: { engagement: { artiste: @engagement.artiste, startengagement: @engagement.startengagement, contract: @engagement.contract, endengagement: @engagement.endengagement, hotel: @engagement.hotel, rehearsals: @engagement.rehearsals, sent: @engagement.sent, taxi: @engagement.taxi, title: @engagement.title } }
   end
 
   test "should destroy engagement" do
@@ -43,6 +40,5 @@ class EngagementsControllerTest < ActionDispatch::IntegrationTest
       delete engagement_url(@engagement)
     end
 
-    assert_redirected_to engagements_url
   end
 end

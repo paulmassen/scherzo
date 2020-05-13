@@ -10,9 +10,8 @@
       <% else %>
       <i class="material-icons circle">person</i>
       <% end %>
-      <span class="title"><%= artiste.name %></span>
-      <p>First Line <br>
-      </p>
+      <span class="title"><a href="<%= artiste_path(artiste) %>"><%= artiste.name %></a></span>
+      <p><%= artiste.instrument %></p>
       <a href="<%= artiste_path(artiste) %>" class="secondary-content"><i class="material-icons">remove_red_eye</i></a>
     </li>
   

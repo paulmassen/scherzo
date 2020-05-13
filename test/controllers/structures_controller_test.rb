@@ -20,7 +20,6 @@ class StructuresControllerTest < ActionDispatch::IntegrationTest
       post structures_url, params: { structure: { address: @structure.address, title: @structure.title } }
     end
 
-    assert_redirected_to structure_url(Structure.last)
   end
 
   test "should show structure" do
@@ -35,7 +34,6 @@ class StructuresControllerTest < ActionDispatch::IntegrationTest
 
   test "should update structure" do
     patch structure_url(@structure), params: { structure: { address: @structure.address, title: @structure.title } }
-    assert_redirected_to structure_url(@structure)
   end
 
   test "should destroy structure" do
@@ -43,6 +41,5 @@ class StructuresControllerTest < ActionDispatch::IntegrationTest
       delete structure_url(@structure)
     end
 
-    assert_redirected_to structures_url
   end
 end

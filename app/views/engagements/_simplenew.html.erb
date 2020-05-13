@@ -1,32 +1,28 @@
 <%= form_with(model: @engagement, local: true) do |form| %>
-<div class="modal-content">
-<div class="row">
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-    <div class="input-field">
-    <%= form.collection_select :artiste_id, Artiste.all, :id, :name, { :class => "dropdown" } %>
-  </div>
-
-  <div class="input-field">
-    <p>Statut de l'engagement</p>
-      <%= form.select :status, [["Confirmé", "confirmed"], ["Invitation", "invitation"], ["Option", "option"]], {}, { :class => "browser-default", :id => "eventtype" } %>
+  <div class="modal-content">
+    <div class="row">
+      <div class="field">
+        <%= form.label :title %>
+        <%= form.text_field :title %>
       </div>
-  <div class="field col s6">
-    <%= form.label :begin %>
-    <%= form.text_field :begin, class: "datepicker" %>
+      <div class="input-field">
+        <%= form.collection_select :artiste_id, Artiste.all, :id, :name, { :class => "dropdown" } %>
+      </div>
+      <div class="input-field">
+        <p>Statut de l'engagement</p>
+        <%= form.select :status, [["Confirmé", "confirmed"], ["Invitation", "invitation"], ["Option", "option"]], {}, { :class => "browser-default", :id => "eventtype" } %>
+      </div>
+      <div class="field col s6">
+        <%= form.label :begin %>
+        <%= form.text_field :begin, class: "datepicker" %>
+      </div>
+      <div class="field col s6">
+        <%= form.label :end %>
+        <%= form.text_field :end, class: "datepicker" %>
+      </div>
+      <div class="actions">
+        <%= form.submit "Enregistrer", :class => "btn blue darken-2" %>
+      </div>
+    </div>
   </div>
-
-  <div class="field col s6">
-    <%= form.label :end %>
-    <%= form.text_field :end, class: "datepicker" %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit "Enregistrer", :class => "btn blue darken-2" %>
-  </div>
-
-</div>
-</div>
 <% end %>

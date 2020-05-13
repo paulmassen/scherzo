@@ -55,4 +55,33 @@ class EngagementReflex < ApplicationReflex
     structureid = element.dataset[:structureid]
     engagement.structures.delete(structureid)
   end
+  def add_contact
+    engagement = Engagement.find(element.dataset[:id])
+    contactid = element[:value].start_with?("Select a") ? nil : element[:value]
+    mycontact = Contact.find(contactid)
+    engagement.contacts << mycontact
+  end
+  def change_partner_name
+    partner = session[:partner]
+    name = element[:value]
+    partner.name = name
+  end
+
+  def change_partner_instrument
+    partner = session[:partner]
+    instrument = element[:value]
+    partner.instrument = instrument
+  end
+
+  def add_partner
+    engagement = Engagement.find(element.dataset[:id])
+    partner = session[:partner]
+    engagement.partners << partner
+    session[:partner] = Partner.new
+  end
+  def remove_partner
+    engagement = Engagement.find(element.dataset[:engagementid])
+    partnerid = Partner.find(element.dataset[:partnerid])
+    engagement.partners.delete(partnerid)
+  end
 end

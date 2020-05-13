@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_05_142832) do
+ActiveRecord::Schema.define(version: 2020_05_11_093211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 2020_05_05_142832) do
     t.string "audiens"
     t.text "biography"
     t.text "address"
+    t.string "instrument"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -75,6 +76,21 @@ ActiveRecord::Schema.define(version: 2020_05_05_142832) do
     t.string "surname"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "address"
+    t.string "address2"
+    t.string "codepostal"
+    t.string "ville"
+    t.string "cedex"
+    t.string "pays"
+  end
+
+  create_table "contacts_engagements", id: false, force: :cascade do |t|
+    t.bigint "engagement_id", null: false
+    t.bigint "contact_id", null: false
+    t.string "fonction"
+    t.boolean "maincontact"
+    t.index ["contact_id", "engagement_id"], name: "index_contacts_engagements_on_contact_id_and_engagement_id"
+    t.index ["engagement_id", "contact_id"], name: "index_contacts_engagements_on_engagement_id_and_contact_id"
   end
 
   create_table "engagements", force: :cascade do |t|

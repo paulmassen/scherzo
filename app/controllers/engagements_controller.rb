@@ -47,6 +47,8 @@ class EngagementsController < ApplicationController
 
   # GET /engagements/1/edit
   def edit
+    session[:partner] = Partner.new if session[:partner].nil?
+    @partner = session[:partner]
   end
 
   # POST /engagements

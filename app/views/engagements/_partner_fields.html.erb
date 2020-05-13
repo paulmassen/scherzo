@@ -1,14 +1,11 @@
-
-
- <li class='nested-fields collection-item '>
-    <div class="field col s3" style="width:90%;">
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-    </div>
-    <div class="field col s3" style="width:90%;">
-      <%= f.label :instrument %>
-      <%= f.text_field :instrument %>
-    </div>
-
- <%= link_to_remove_association '<i class="material-icons">clear</i>'.html_safe, f , { class: 'secondary-content' } %>
-  </li>
+<li class='nested-fields collection-item '>
+  <div class="field col s3" style="width:90%;">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field col s3" style="width:90%;">
+    <%= f.label :instrument %>
+    <%= f.text_field :instrument %>
+  </div>
+  <%= link_to_remove_association '<i class="material-icons">clear</i>'.html_safe, f , { class: 'secondary-content' } %>
+</li>
