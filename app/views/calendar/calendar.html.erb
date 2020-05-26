@@ -1,50 +1,72 @@
 <style>
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: green!important;
+}
 
-.container {
-    width: 100%!important; 
+.custom-checkbox .custom-control-input:checked:focus ~ .custom-control-label::before {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 255, 0, 0.25);
+  border-radius:8px;
+}
+.custom-checkbox .custom-control-input:focus ~ .custom-control-label::before {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 0, 0, 0.25)
+  border-radius:8px;
+}
+.custom-checkbox .custom-control-input:active ~ .custom-control-label::before {
+  background-color: #C8FFC8; 
+  border-radius:8px;
 }
 </style>
-<div class="row">
-<div class="events-filter-checkbox col s2">
-      <ul class="collapsible">
+
+<div class="content-body row">
+<div id="sidebar" class="sidebar col-md-2">
+    <div class="sidebar-new-schedule">
+        <!-- create new schedule button -->
+        <button id="btn-new-schedule" type="button" class="btn btn-primary btn-block sidebar-new-schedule-btn">
+            New schedule
+        </button>
+    </div>
+    <!-- sidebar calendar labels -->
+    <div id="sidebar-calendars" class="sidebar-calendars">
+        <div>
+            <div class="sidebar-calendars-item">
+                <!-- view All checkbox -->
+                
+               
 <% @artistes.each do |artiste| %>
 
-    <li>
-      <div class="collapsible-header">
-        <label>
-          <input type="checkbox" class="<%= artiste.name.parameterize %>"/>
-            <span></span>
+
+      <div class="checkbox">
+        
+          <input type="checkbox" id="<%= artiste.name.parameterize %>" class="checkbox-round <%= artiste.name.parameterize %>"/>
+            
+        <label for="<%= artiste.name.parameterize %>"><span class="rounded" style="border-color: rgb(71, 95, 123); background-color: rgb(71, 95, 123);"></span> <%= artiste.name %>
+        
         </label>
-        <%= artiste.name %>
-      </div>
-      <div class="collapsible-body">
-          <div class="switch">
-            <label>
-              Option
-              <input type="checkbox">
-              <span class="lever"></span>
-              
-            </label>
-          </div>
-          <div class="switch">
-            <label>
-              Invitation
-              <input type="checkbox">
-              <span class="lever"></span>
-              
-            </label>
-          </div>
-      </div>
-    </li>
-
-
+        
+        </div>
+  
+ 
 <% end %>
-</ul>
-</div>
+ <div class="myTest custom-control custom-checkbox">
+      <input type="checkbox" class="custom-control-input" id="customCheck1">
+      <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+    </div>
 
-<div id="calendar" class="col s10"></div>
-
+                </div>
+                <!--<div id="calendarList" class="sidebar-calendars-d1"><div class="sidebar-calendars-item"><label style=""><input type="checkbox" class="tui-full-calendar-checkbox-round" value="1" checked=""><span style="border-color: rgb(0, 207, 221); background-color: rgb(0, 207, 221);"></span><span>My Calendar</span></label></div>
+       </div>-->
+        </div>
+       
+       
+    </div>
+    <!-- / sidebar calendar labels -->
 </div>
+<!-- calendar sidebar end -->
+<!-- calendar view start  -->
+</div>
+<div class="calendar-view col-md-10" id="calendar"></div>
+
+
 <div id="modalEngagements" class="modal">Test Modal box</div>
 <script>
 $(".eventtype").change(function() {
@@ -57,55 +79,7 @@ $(".eventtype").change(function() {
     // $('#interest').val(rate);
 });
 
-  $('#calendar').fullCalendar({
-  //var calendar = $(this);
-	schedulerLicenseKey : 'GPL-My-Project-Is-Open-Source',
-	editable : true,
-	selectable : true,
-	selectHelper : true,
-	header: {
-	  left: 'prev,next today',
-	  center: 'title',
-	  right: 'month, agendaWeek, agendaDay'
-	},
-	scrollTime : '00:00',
-	defaultDate : '2020-04-02',
-	events : '/engagements.json',
-	select: function(start, end){
-	  $.getScript('/engagements/new', function(){
-	    
-	  });
-	  //calendar.fullCalendar('unselect')
-	}
-	
-/*  eventRender: function(event, element) {
-            // Array that will store accepted classes
-            var eventAcceptedClasses = [];
-            if ($('.nicholas-angelich').is(':checked')){
-                eventAcceptedClasses.push('nicholas-angelich');
-            }
-            if ($('.khatia-buniatishvili').is(':checked')){
-                eventAcceptedClasses.push('khatia-buniatishvili');
-             
-            }
-            if ($('.david-kadouch').is(':checked')){
-                eventAcceptedClasses.push('david-kadouch');
-            }
-            if ($('.lilya-zilberstein').is(':checked')){
-                eventAcceptedClasses.push('lilya-zilberstein');
-            }
-            if ($('.martha-argerich').is(':checked')){
-                eventAcceptedClasses.push('martha-argerich');
-            }
-            displayEvent = false;
-            event.className.forEach(function(element){
-                if ($.inArray(element, eventAcceptedClasses) != -1){
-                    displayEvent = true;
-                }
-            });
-            return displayEvent;
-        }*/
-});
+
 $('.events-filter-checkbox').on('change', function(){
     $('#calendar').fullCalendar('rerenderEvents');
 });

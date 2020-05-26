@@ -1,7 +1,15 @@
 <h1><%= @engagement.title %></h1>
+                <section id="basic-horizontal-layouts">
+                    <div class="row match-height">
 <%= render "form", engagement: @engagement %>
-<%= link_to "Show", @engagement %> |
-<%= link_to "Back", engagements_path %>
-<div class="infobox">
+
+
+
+ </div>
+                </section>
+                <%= link_to "Show", @engagement , :class => 'btn btn-light-primary' %>
+<%= link_to "Back", engagements_path , :class => 'btn btn-light-secondary' %>
+
+                <div class="infobox">
   Engagement créé le <%= @engagement.created_at %> et modifié pour la dernière fois le <%= @engagement.updated_at %>
 </div>

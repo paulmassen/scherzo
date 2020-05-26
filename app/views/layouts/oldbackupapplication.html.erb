@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Scherzo App</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+
+<!--==============TEST====================-->
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_pack_tag 'application','data-turbolinks-track': 'reload'  %>
+  <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<!--<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/base.min.css"
+/>-->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"
+/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+   <script src="https://cdn.jsdelivr.net/npm/flatpickr@latest/dist/plugins/rangePlugin.js"></script>
+
+<!--==============TEST====================--> 
+
+  </head>
+
+  <body>
+ <header id="header" class="page-topbar">
+      <!-- start header nav-->
+      <div class="navbar-fixed">
+        <nav class="navbar-color gradient-45deg-light-blue-cyan">
+
+        </nav>
+      </div>
+      <!-- end header nav-->
+    </header>
+    <ul id="slide-out" class="sidenav sidenav-fixed">
+                  <li class="user-details cyan darken-2" style="background-image: url('<%= image_url('material-background.png')%>')">
+              <div class="row">
+                <div class="col col s4 m4 l4">
+                  <img src="<%= image_url('avatar.jpg') %>" alt="" class="circle responsive-img valign profile-image cyan">
+                </div>
+                <div class="col col s8 m8 l8">
+          
+                  <a class="waves-effect waves-light white-text">Paul</a>
+                  <p class="user-roal">Admin</p>
+                </div>
+              </div>
+            </li>
+      <li><a href="/dashboard" class="waves-effect waves-cyan"><i class="material-icons">dashboard</i>Dashboard</a></li>
+      <li><a href="/programmes" class="waves-effect waves-cyan"><i class="material-icons">queue_music</i>Programmes</a></li>
+      <li><a href="/engagements" class="waves-effect waves-cyan"> <i class="material-icons">border_all</i>Engagements</a></li>
+      <li><a href="/projects" class="waves-effect waves-cyan"> <i class="material-icons">work</i>Projects</a></li>
+      <li><a href="/projects" class="waves-effect waves-cyan"> <i class="material-icons">map</i>Map</a></li>
+      <li><a href="/calendar" class="waves-effect waves-cyan"> <i class="material-icons">view_agenda</i>Calendar</a></li>
+      <li><a href="/projects" class="waves-effect waves-cyan"> <i class="material-icons">today</i>Activities</a></li>
+      <li><a href="/artistes" class="waves-effect waves-cyan"> <i class="material-icons">person</i>Artistes</a></li>
+      <li><a href="/structures" class="waves-effect waves-cyan"> <i class="material-icons">business</i>Structures</a></li>
+      <li><a href="/contacts" class="waves-effect waves-cyan"> <i class="material-icons">person_pin</i>Contacts</a></li>
+      <li><a href="/settings" class="waves-effect waves-cyan"> <i class="material-icons">settings</i>Reglages</a></li>
+    </ul>
+    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+<div class="main">
+  <div class="container">
+    <%= yield %>
+    </div>
+</div>
+<footer class="page-footer gradient-45deg-light-blue-cyan">
+        <div class="footer-copyright">
+          <div class="container">
+            <span>Copyright © 2020 <a class="grey-text text-lighten-2" href="#" target="_blank">Paul Massendari</a> Tous droits réservés.</span>
+            <span class="right hide-on-small-only"> Design and Developed by <a class="grey-text text-lighten-2" href="#">Paul Massendari</a></span>
+          </div>
+        </div>
+    </footer>
+
+  </body>
+</html>

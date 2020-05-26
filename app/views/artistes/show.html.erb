@@ -33,40 +33,73 @@
    <strong>Passportexpire:</strong>
    <%= @artiste.passportexpire %>
 </p>
-<%= link_to '<i class="material-icons">print</i>Imprimer'.html_safe, artiste_path + "/printfiche", class: "btn amber darken-3" %>
+<%= link_to '<i class="bx bx-printer"></i> Imprimer'.html_safe, artiste_path + "/printfiche", class: "btn btn-light shadow" %>
 <!--< @artistesengagements.inspect.each do |engagement|   %>-->
 <hr>
 
 <h3>Engagements</h3>
-<ul class="collapsible">
-   <li>
-      <div class="collapsible-header"><i class="material-icons">next_week</i><%= @futursengagements.size %> Futurs Engagements</div>
-      <div class="collapsible-body">
-         <%= render partial: "engagement_table", locals: {concerts: @futursengagements} %>
-      </div>
-   </li>
-   <li>
-      <div class="collapsible-header"><i class="material-icons">history</i><%= @pastengagements.size %> Engagements Passés</div>
-      <div class="collapsible-body">
-         <%= render partial: "engagement_table", locals: {concerts: @pastengagements} %>
+<div class="collapsible">
+   <div class="card collapse-header">
+       <div id="headingCollapse1" class="card-header" data-toggle="collapse" role="button" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+           <span class="collapse-title">
+               <%= @futursengagements.size %> Futurs Engagements
+           </span>
+       </div>
+       <div id="collapse1" role="tabpanel" aria-labelledby="headingCollapse1" class="collapse">
+           <div class="card-content">
+               <div class="card-body">
+                  <%= render partial: "engagement_table", locals: {concerts: @futursengagements} %>
+               </div>
+           </div>
+       </div>
+   </div>
+   <div class="card collapse-header">
+       <div id="headingCollapse2" class="card-header" data-toggle="collapse" role="button" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+           <span class="collapse-title">
+               <%= @pastengagements.size %> Engagements Passés
+           </span>
+       </div>
+       <div id="collapse2" role="tabpanel" aria-labelledby="headingCollapse2" class="collapse">
+           <div class="card-content">
+               <div class="card-body">
+                  <%= render partial: "engagement_table", locals: {concerts: @pastengagements} %>
         
-      </div>
-   </li>
-   <li>
-      <div class="collapsible-header"><i class="material-icons">insert_invitation</i><%= @optionengagements.size %> Options à confirmer</div>
-      <div class="collapsible-body">
-        <%= render partial: "engagement_table", locals: {concerts: @optionengagements} %>
-      </div>
-   </li>
-   <li>
-      <div class="collapsible-header"><i class="material-icons">hourglass_empty</i><%= @pendinginvitations.size %> Invitations en attente </div>
-      <div class="collapsible-body">
-        <%= render partial: "engagement_table", locals: {concerts: @pendinginvitations} %>
-      </div>
-   </li>
-</ul>
+               </div>
+           </div>
+       </div>
+   </div>
+   <div class="card collapse-header">
+       <div id="headingCollapse3" class="card-header" data-toggle="collapse" role="button" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+           <span class="collapse-title">
+               <%= @pendinginvitations.size %> Invitations en attente
+           </span>
+       </div>
+       <div id="collapse3" role="tabpanel" aria-labelledby="headingCollapse3" class="collapse">
+           <div class="card-content">
+               <div class="card-body">
+                  <%= render partial: "engagement_table", locals: {concerts: @pendinginvitations} %>
+               </div>
+           </div>
+       </div>
+   </div>
+   <div class="card collapse-header">
+       <div id="headingCollapse4" class="card-header" data-toggle="collapse" role="button" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+           <span class="collapse-title">
+               <%= @optionengagements.size %> Futurs Engagements
+           </span>
+       </div>
+       <div id="collapse4" role="tabpanel" aria-labelledby="headingCollapse4" class="collapse">
+           <div class="card-content">
+               <div class="card-body">
+                  <%= render partial: "engagement_table", locals: {concerts: @optionengagements} %>>
+               </div>
+           </div>
+       </div>
+   </div>
+   
+</div>
 <br>
 <hr>
 <h3>Programmes</h3>
-<%= link_to '<div class="btn blue lighten-1"><i class="material-icons ">edit</i> Editer</div>'.html_safe, edit_artiste_path(@artiste) %> 
-<%= link_to '<div class="btn amber lighten-1"><i class="material-icons ">arrow_back</i> Retour</div>'.html_safe, artistes_path %>
+<%= link_to '<div class="btn btn-light shadow"><i class="bx bx-edit"></i> Editer</div>'.html_safe, edit_artiste_path(@artiste) %> 
+<%= link_to '<div class="btn btn-light shadow"><i class="bx bx-reply"></i> Retour</div>'.html_safe, artistes_path %>
