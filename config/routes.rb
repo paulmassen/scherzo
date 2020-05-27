@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
   get '/structures/search' => 'structures#search'
   get '/contacts/search' => 'contacts#search'
+  get '/engagements/search' => 'engagements#search'
   resources :structures 
   resources :contacts
   #get 'ficheinfo' => 'artistes#ficheinfo'

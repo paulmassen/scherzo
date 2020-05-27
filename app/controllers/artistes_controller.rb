@@ -57,6 +57,7 @@ class ArtistesController < ApplicationController
       if @artiste.update(artiste_params)
         format.html { redirect_back fallback_location: index, notice: 'Artiste was successfully updated.' }
         format.json { render :show, status: :ok, location: @artiste }
+        @artiste.image_derivatives!
       else
         format.html { render :edit }
         format.json { render json: @artiste.errors, status: :unprocessable_entity }
@@ -100,6 +101,7 @@ class ArtistesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_artiste
       @artiste = Artiste.find(params[:id])
+      
     end
 
     # Only allow a list of trusted parameters through.

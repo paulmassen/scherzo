@@ -5,7 +5,8 @@ class EngagementsController < ApplicationController
   # Test commentaire
   # GET /engagements.json
   def index
-    @engagements = Engagement.order(params[:sort])
+    @engagements = Engagement.order(params[:sort]).includes(:artiste).all
+    # .includes(:artiste).all
    # @artiste = Artiste.find(engagement_params[:artiste_id])
     #@artistes = Artiste.all
     
@@ -43,6 +44,18 @@ class EngagementsController < ApplicationController
   # GET /engagements/new
   def new
     @engagement = Engagement.new
+  end
+  
+  def search 
+    if params[:start]
+      startdate = params[:start].to_date
+      enddate = params[:end].to_date
+      @engagements = Engagement.where('startengagement >= ? AND endengagement <= ?', startdate, enddate)
+     # Planting.where('planting_date_end >= ? AND planting_date_begin <= ?', start_date, end_date
+    else
+      @engagements = Engagement.all
+    end
+    render '/engagements/show.json'    
   end
 
   # GET /engagements/1/edit

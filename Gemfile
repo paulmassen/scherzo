@@ -27,6 +27,8 @@ gem "shrine", "~> 3.0"
 gem 'odf-report'
 gem 'faker'
 gem 'pagy', '~> 3.5'
+gem "image_processing", "~> 1.8"
+gem "mini_magick", ">= 4.3.5"
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password

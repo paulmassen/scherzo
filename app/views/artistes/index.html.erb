@@ -6,7 +6,7 @@
     
     <li class="collection-item avatar">
       <% if artiste.image.present? %>
-      <img src="<%= artiste.image_url %>" alt="" class="circle">
+      <img src="<%= artiste.image_url(:micro) %>" alt="" class="circle">
       <% else %>
       <i class="material-icons circle">person</i>
       <% end %>
