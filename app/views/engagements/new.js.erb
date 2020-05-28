@@ -1,4 +1,17 @@
 $('#modalEngagements').html('<%= j render partial: "simplenew" %>');
-$('#modalEngagements').modal();
+
+$('#modalEngagements').modal({
+    dismissible: true,
+    onOpenEnd: function() {
+      console.log("onOpenEnd");
+      /*flatpickr(".flatpickr", {
+        plugins: [new rangePlugin({ input: "#secondfield" })]
+      })*/
+    }
+});
 $('#modalEngagements').modal('open');
+
 $('select').formSelect();
+
+
+

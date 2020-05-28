@@ -7,37 +7,19 @@
 <div class="row">
 <div class="events-filter-checkbox col s2">
       <ul class="collapsible">
+        <li>
+          <label>
+            <input type="checkbox" id="checkAll"/>
+            <span>Check all</span>
+          </label>
+        </li>
 <% @artistes.each do |artiste| %>
-
     <li>
-      <div class="collapsible-header">
         <label>
           <input type="checkbox" class="<%= artiste.name.parameterize %>"/>
-            <span></span>
+            <span><%= artiste.name %></span>
         </label>
-        <%= artiste.name %>
-      </div>
-      <div class="collapsible-body">
-          <div class="switch">
-            <label>
-              Option
-              <input type="checkbox">
-              <span class="lever"></span>
-              
-            </label>
-          </div>
-          <div class="switch">
-            <label>
-              Invitation
-              <input type="checkbox">
-              <span class="lever"></span>
-              
-            </label>
-          </div>
-      </div>
     </li>
-
-
 <% end %>
 </ul>
 </div>
@@ -47,6 +29,10 @@
 </div>
 <div id="modalEngagements" class="modal">Test Modal box</div>
 <script>
+$("#checkAll").click(function(){
+    $('input:checkbox').not(this).prop('checked', this.checked);
+});
+
 $(".eventtype").change(function() {
 
     if ($(this).val() == "Concert") {
@@ -69,34 +55,37 @@ $(".eventtype").change(function() {
 	  right: 'month, agendaWeek, agendaDay'
 	},
 	scrollTime : '00:00',
-	defaultDate : '2020-04-02',
 	events : '/engagements/search',
 	select: function(start, end){
+	  var mystart = new Date(start);
+	  var myend = new Date(end);
+	  // myend = myend.setDate(myend.getDate() - 1); 
 	  $.getScript('/engagements/new', function(){
+	    //console.log(moment(start).format("DD/MM/YYYY"));
+	    //console.log(moment(start).format("DD/MM/YYYY"));
+	    const ff = flatpickr("#firstfield", {
+        mode: 'multiple'
+      });
+      const sf = flatpickr("#secondfield", {
+        mode: 'multiple'
+      });
+      console.log(mystart);
+      console.log(myend);
+	    ff.setDate(mystart);
+	    sf.setDate(myend);
 	    
 	  });
 	  //calendar.fullCalendar('unselect')
-	}
+	},
 	
-/*  eventRender: function(event, element) {
+  eventRender: function(event, element) {
             // Array that will store accepted classes
             var eventAcceptedClasses = [];
-            if ($('.nicholas-angelich').is(':checked')){
-                eventAcceptedClasses.push('nicholas-angelich');
+            <% @artistes.each do |artiste| %>
+           if ($('.<%= artiste.name.parameterize %>').is(':checked')){
+                eventAcceptedClasses.push('<%= artiste.name.parameterize %>');
             }
-            if ($('.khatia-buniatishvili').is(':checked')){
-                eventAcceptedClasses.push('khatia-buniatishvili');
-             
-            }
-            if ($('.david-kadouch').is(':checked')){
-                eventAcceptedClasses.push('david-kadouch');
-            }
-            if ($('.lilya-zilberstein').is(':checked')){
-                eventAcceptedClasses.push('lilya-zilberstein');
-            }
-            if ($('.martha-argerich').is(':checked')){
-                eventAcceptedClasses.push('martha-argerich');
-            }
+            <% end %>
             displayEvent = false;
             event.className.forEach(function(element){
                 if ($.inArray(element, eventAcceptedClasses) != -1){
@@ -104,7 +93,7 @@ $(".eventtype").change(function() {
                 }
             });
             return displayEvent;
-        }*/
+        }
 });
 $('.events-filter-checkbox').on('change', function(){
     $('#calendar').fullCalendar('rerenderEvents');

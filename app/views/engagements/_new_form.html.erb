@@ -41,4 +41,9 @@
     <%= form.submit "Enregistrer", :class => "btn blue darken-2" %>
   </div>
 </div>
+<script>
+flatpickr(".flatpickr", {
+  plugins: [new rangePlugin({ input: "#secondfield" })],
+})
+</script>
 <% end %>

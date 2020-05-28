@@ -13,7 +13,7 @@ class ImageUploader < Shrine
           large: magick.resize_to_limit!(800, 800),
           medium: magick.resize_to_limit!(500, 500),
           small: magick.resize_to_limit!(300, 300),
-          micro: magick.resize_to_limit!(80, 80),
+          micro: magick.resize_to_fill!(80, 80),
       }
   end
 end
