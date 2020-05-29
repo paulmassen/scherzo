@@ -83,7 +83,7 @@ class StructuresController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def structure_params
-      params.require(:structure).permit(:title, :address)
+      params.require(:structure).permit(:title, :address, :address2, :postalcode, :city, :cedex, :phone, :email, :country)
     end
 
 end

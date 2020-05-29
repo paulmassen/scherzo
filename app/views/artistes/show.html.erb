@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 <div class="field">
-     <p
+   <h1><%= @artiste.name %></h1>
+   <!--  <p
     data-controller="inline-edit"
     data-inline-edit-model="artiste"
     data-inline-edit-name="name"
@@ -8,19 +9,56 @@
     data-target="inline-edit.source"
     data-action="click->inline-edit#toggle click@window->inline-edit#close"
    >
-    <%= @artiste.name %>
+    <%#= @artiste.name %>
   
-</p>
+</p>-->
 </div>
 <hr>
 <p>
-   <strong>Address:</strong>
-   <%= @artiste.address %>
+   <strong>Instrument:</strong>
+   <%= @artiste.instrument %>
 </p>
 <p>
-   <strong>Birthdate:</strong>
+   <strong>Adresse :</strong>
+   <%= @artiste.address %>
+</p>
+
+<hr>
+<p>
+   <strong>Date de naissance :</strong>
    <%= @artiste.birthdate %>
 </p>
+<p>
+   <strong>Ville de naissance :</strong>
+   <%= @artiste.birthplacecity %>
+</p>
+<p>
+   <strong>Département de naissance :</strong>
+   <%= @artiste.birthplacedepartment %>
+</p>
+<p><strong>Pays de naissance :</strong>
+   <%= @artiste.birthplacecountry %>
+</p>
+<p><strong>Nationalité :</strong>
+<%= @artiste.nationality %>
+</p>
+<hr>
+<p><strong>Situation familiale :</strong>
+<%= @artiste.familystatus %>
+</p>
+<p><strong>No de Sécurité Sociale: </strong>
+<%= @artiste.socialsecurity %>
+</p>
+<p><strong>No de Congés Spectacles</strong>
+<%= @artiste.congesspectacles %>
+</p>
+<p><strong>No Audiens</strong>
+<%= @artiste.audiens %>
+</p>
+<p><strong>Fidélité Compagnie aérienne</strong>
+<%= @artiste.flightcompany %>
+</p>
+<hr>
 <p>
    <strong>Passportnumber:</strong>
    <%= @artiste.passportnumber %>

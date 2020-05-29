@@ -55,7 +55,7 @@
       <%#  %>
       <div id='structures'>
         <div class="row">
-          <%= form.fields_for :structures do |structure| %>
+          <% engagement.structures.each do |structure| %>
             <%= render 'structure_fields', :f => structure , engagementid: @engagement.id %>
           <% end %>
         </div>

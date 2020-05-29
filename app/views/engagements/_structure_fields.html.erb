@@ -1,25 +1,17 @@
 <div class="col nested-fields s6 m6">
   <div class="card grey lighten-5">
-    <div class="card-content white-text">
-      <span class="card-title">
-        <p>  
-          <div class='nested-fields'>
-            <div class="field">
-              <%= f.label :title %>
-              <%= :title %>
-              <%# f.text_field :title %>
-            </div>
-          </span>
-          <div class="field">
-            <%= f.label :address %>
-            <%# f.text_field :address %>
-          </div>
-        </div>
-      </p>
+    <div class="card-content">
+      <span class="card-title"><%= f.title %></span>
+      <p><%= f.address %></p>
+      <p><%= f.address2 %></p
+      <p><%= f.postalcode %> <%= f.city %></p>
+      <p><%= f.country %></p>
+      <p><i class="material-icons small">phone</i><%= f.phone %></p>
+
     </div>
     <div class="card-action">
-      <a id="remove_structure" href="#" data-engagementid="<%= engagementid %>" data-structureid="<%= f.object.id %>" data-reflex-root="#structures" data-reflex="click->EngagementReflex#remove_structure">Remove this</a>
-      <a href="<%= structure_path(f.object.id) %>"> Voir la fiche de la structure</a>
+      <a id="remove_structure" href="#" data-engagementid="<%= engagementid %>" data-structureid="<%= f.id %>" data-reflex-root="#structures" data-reflex="click->EngagementReflex#remove_structure">Remove this</a>
+      <a href="<%= structure_path(f.id) %>"> Voir la fiche de la structure</a>
     </div>
   </div>
 </div>

@@ -4,10 +4,47 @@
   <h1><%= @structure.title %></h1>
 </p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @structure.address %>
-</p>
+
+  <p>
+    <strong>address</strong>
+  
+    <%= @structure.address %>
+  </p>
+    <p>
+    <strong>address2</strong>
+  
+    <%= @structure.address2 %>
+  </p>
+    <p>
+    <strong>postalcode</strong>
+  
+    <%= @structure.postalcode %>
+  </p>
+    <p>
+    <strong>city</strong>
+  
+    <%= @structure.city %>
+  </p>
+    <p>
+    <strong>cedex</strong>
+  
+    <%= @structure.cedex %>
+  </p>
+    <p>
+    <strong>country</strong>
+  
+    <%= @structure.country %>
+  </p>
+    <p>
+    <strong>phone</strong>
+  
+    <%= @structure.phone %>
+  </p>
+    <p>
+    <strong>email</strong>
+  
+    <%= @structure.email %>
+  </p>
 <h3>Contacts</h3>
   <div class="row">
      <div data-controller="choices" id="mycontactselect" data-search-path="/contacts/search?title=" data-reflex-root="#contactlist" data-remove-item-button="true" data-add-item="{'bonjour', 'test'}" data-search-result-limit="100" data-no-Results-Text="<span onclick='addContactTrigger()'><i class='material-icons'>person_add</i> Créer un nouveau contact</span>" data-no-choices-text="Sélectionner un contact à ajouter...">
@@ -46,8 +83,8 @@ function addContactTrigger(){
           
         </div>
         <div class="card-action">
-          <a href="#">This is a link</a>
-          <a href="#">This is a link</a>
+          <a href="/contacts/<%= contact.contact_id %>"><i class="material-icons">edit</i></a>
+          <a href="#"><i class="material-icons">delete</i></a>
         </div>
       </div>
     </div>
