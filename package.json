@@ -10,6 +10,7 @@
     "babel-loader": "^8.1.0",
     "choices.js": "^9.0.1",
     "cocoon": "github:nathanvda/cocoon#c24ba53",
+    "datatables.net-dt": "^1.10.21",
     "fullcalendar": "^3.10.1",
     "jquery": "^3.5.0",
     "jquery-ui": "^1.12.1",

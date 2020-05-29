@@ -16,6 +16,7 @@ require("trix");
 require("@rails/actiontext");
 //require("selectize");
 require("choices.js");
+// require("datatables.net-dt");
 //require("stimulus-inline-edit");
 //require("jquery-ui");
 //require("materialize-css")
@@ -26,11 +27,15 @@ import StimulusReflex from 'stimulus_reflex'
 import $ from 'jquery';
 import selectize from 'selectize';
 import * as Choices from 'choices.js'
+
 global.$ = $
 global.jQuery = $
 
+
  $(document).on('turbolinks:load', function() {
+
  
+
 
 
   });  

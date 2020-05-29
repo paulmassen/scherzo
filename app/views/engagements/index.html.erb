@@ -1,19 +1,19 @@
 <p id="notice"><%= notice %></p>
 <h1>Engagements</h1>
-<table class="stripped highlight">
+<table class="stripped highlight" id="datatable">
   <thead>
     <tr>
-      <th><%= link_to "Titre", :sort => "title" %></th>
-      <th><%= link_to "Début", :sort => "begin" %></th>
-      <th><%= link_to "Fin", :sort => "end" %></th>
-      <th><%= link_to "Contrat", :sort => "contract" %></th>
-      <th><%= link_to "Voyages", :sort => "voyages" %></th>
-      <th><%= link_to "Hotel", :sort => "hotel" %></th>
-      <th><%= link_to "Transfert", :sort => "taxi" %></th>
-      <th><%= link_to "Envoyé", :sort => "sent" %></th>
-      <th><%= link_to "Répétitions", :sort => "rehearsals" %></th>
-      <th><%= link_to "Artiste", :sort => "artiste" %></th>
-      <th colspan="3"></th>
+      <th>Titre</th>
+      <th>Début</th>
+      <th>Fin</th>
+      <th>Contrat</th>
+      <th>Voyages</th>
+      <th>Hotel</th>
+      <th>Taxi</th>
+      <th>Sent</th>
+      <th>Répétitions</th>
+      <th>Artiste</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -54,11 +54,37 @@
         <% end %>
         <td><%= engagement.artiste.name %></td>
         <!--<td><#%= link_to 'Show', engagement   %></td>-->
-        <td><%= link_to '<i class="material-icons">edit</i>'.html_safe, edit_engagement_path(engagement) %></td>
-        <td><%= link_to '<i class="material-icons">delete</i>'.html_safe, engagement, method: :delete, data: { confirm: "Are you sure?" } %></td>
+        <td><%= link_to '<i class="material-icons">edit</i>'.html_safe, edit_engagement_path(engagement) %> <%= link_to '<i class="material-icons">delete</i>'.html_safe, engagement, method: :delete, data: { confirm: "Are you sure?" } %></td>
+       
       </tr>
     <% end %>
   </tbody>
 </table>
 <br>
-<%= link_to "New Engagement", new_engagement_path, class: "btn amber darken-3" %>
+<%= link_to "Créer un nouvel Engagement", new_engagement_path, class: "btn amber darken-3" %>
+<script>
+     $('#datatable').DataTable( {
+    language: {
+        processing:     "Traitement en cours...",
+        search:         "Rechercher&nbsp;:",
+        lengthMenu:    "Afficher _MENU_ &eacute;l&eacute;ments",
+        info:           "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+        infoEmpty:      "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+        infoFiltered:   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+        infoPostFix:    "",
+        loadingRecords: "Chargement en cours...",
+        zeroRecords:    "Aucun &eacute;l&eacute;ment &agrave; afficher",
+        emptyTable:     "Aucune donnée disponible dans le tableau",
+        paginate: {
+            first:      "Premier",
+            previous:   "Pr&eacute;c&eacute;dent",
+            next:       "Suivant",
+            last:       "Dernier"
+        },
+        aria: {
+            sortAscending:  ": activer pour trier la colonne par ordre croissant",
+            sortDescending: ": activer pour trier la colonne par ordre décroissant"
+        }
+    }
+} );
+</script>
