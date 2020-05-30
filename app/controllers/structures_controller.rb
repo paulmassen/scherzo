@@ -4,7 +4,8 @@ class StructuresController < ApplicationController
   # GET /structures
   # GET /structures.json
   def index
-    @pagy, @structures = pagy(Structure.all)
+    #@pagy, @structures = pagy(Structure.all)
+    @structures = Structure.all
     
   end
 

@@ -1,5 +1,10 @@
 <p id="notice"><%= notice %></p>
-<h1>Engagements</h1>
+<div class="row">
+  <div class="col s8"><h1><i class="medium material-icons">business</i> Engagements</h1> </div>
+  <div class="col s4" style="padding-top:30px;"><%= link_to 'Ajouter un Engagement', new_engagement_path , class: "btn amber darken-3" %></div>
+  
+</div>
+
 <table class="stripped highlight" id="datatable">
   <thead>
     <tr>
