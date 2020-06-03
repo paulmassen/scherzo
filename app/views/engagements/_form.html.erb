@@ -185,26 +185,45 @@
   </fieldset>
   <fieldset class="z-depth-1">
             <h3>Planning</h3>
-        <div>
-          <table>
-            <thead>
-              <th>Date</th>
-              <th>Type</th>
-              <th>Début</th>
-              <th>Fin</th>
-              <th>desc1</th>
-              <th>desc2</th>
-              <th>lieu</th>
-              <th>remove</th>
-            </thead>
-            <tbody>
-              <%= form.fields_for :events do |event| %>
-                <%= render "event_fields", :f => event %>
+            <% engagementdays = (engagement.startengagement..engagement.endengagement).to_a %>
+            
+            <% engagementdays.each do |day| %>
+            <% I18n.locale = :fr %>
+            <h5><%= I18n.l(day, format: '%d') %> <%= I18n.t('date.month_names')[day.month] %></h5></br>
+             <table>
+                    <tbody>
+            <% myday = day.strftime('%d, %B') %> 
+            <% engagement.events.each do |event| %>
+          
+              <% if event.eventdate.to_datetime == day.to_datetime %> 
+                <tr>
+                  <td><%= event.eventtype %></td>
+                  <td><%= event.eventbegin.strftime("%Hh%M") %></td>
+                  <td><%= event.eventend.strftime("%Hh%M") %></td>
+                  <td><%= event.description1 %></td>
+                  <td><%= event.description2 %></td>
+                  <td><%= event.location %></td>
+                </tr>
               <% end %>
-              <tr id="tasks"></tr>
-            </tbody>
-          </table>
-          <%= link_to_add_association '<div class="btn">Add event</div>'.html_safe, form, :events, { 'data-association-insertion-method': "after", 'data-association-insertion-node': "tr:last" } %>
+               
+            <% end %>
+</tbody>
+                  </table>
+                
+            <%= link_to_add_association 'ajouter un évènement', form, :events,
+                                   render_options: { locals: {concertday: day, added_by: 'rails'}},
+                                  'data-association-insertion-node' => 'this',
+                                  'data-association-insertion-method' => 'before' %>
+                                  
+            <div id="<%= day.strftime('%d, %B').parameterize %>">
+              
+            </div>
+            </br>
+            
+            <% end %>
+            
+        <div>
+          <%#= link_to_add_association '<div class="btn">Add event</div>'.html_safe, form, :events, { 'data-association-insertion-method': "after", 'data-association-insertion-node': "tr:last" } %>
           <h3>Conditions</h3>
         </div>
   </fieldset>
