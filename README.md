@@ -1,24 +1,12 @@
-# README
+# Scherzo App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This app is a personal project for learning Ruby on Rails.
 
-Things you may want to cover:
+It uses Fullcalendar with dynamic views:
+![Vue Calendrier](calendarview2.gif)
 
-* Ruby version
+It allows the creation of events directly in the calendar thanks to StimulusJS
+![Vue Calendrier](calendarview3.gif)
 
-* System dependencies
+![Vue Calendrier](calendarview4.gif)
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
