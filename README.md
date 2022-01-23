@@ -10,5 +10,6 @@ It allows the creation of events directly in the calendar thanks to StimulusJS
 
 ![Vue Calendrier](calendarview4.gif)
 
-Artists have their own page. Info sheets can be exported to word documents.
+Artists view which list the personal datas, upcoming and past concerts. 
+Info sheets can be exported to word documents.
 ![Vue Calendrier](artistview.gif)
